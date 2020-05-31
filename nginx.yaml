@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: alexnjh/apan50-nginx-demo:0.0.2
+        ports:
+        - name: web
+          containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "5m" #(0.25 of cpu)
+          limits:
+            memory: "128Mi"
+            cpu: "1000m" #(0.5 of cpu)
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/nginx/conf.d/default.conf
+            subPath: default.conf
+      volumes:
+        - name: config-volume
+          configMap:
+            name: nginx-config
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service
+  labels:
+    app: nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - name: web
+    port: 80
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  default.conf: |
+    server {
+      listen       80;
+      listen  [::]:80;
+      server_name  localhost;
+
+
+      location / {
+          root   /usr/share/nginx/html;
+          index  index.html index.htm;
+      }
+
+      error_page   500 502 503 504  /50x.html;
+      location = /50x.html {
+          root   /usr/share/nginx/html;
+      }
+
+      location ~ \.php$ {
+         root           html;
+         fastcgi_pass   localhost:9000;
+         fastcgi_index  index.php;
+         fastcgi_param  REQUEST_METHOD $request_method;
+         fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+         #include        fastcgi_params;
+      }
+
+    }
