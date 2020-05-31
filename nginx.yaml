@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: alexnjh/apan50-nginx-demo:0.0.3
+        image: alexnjh/apan50-nginx-demo:0.0.4
         env:
         - name: DB_ADDR
           value: "mariadb-0.mariadb-service.default.svc.cluster.local:3306"

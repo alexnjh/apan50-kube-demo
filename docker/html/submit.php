@@ -50,13 +50,6 @@ if( $_POST["bookname"] || $_POST["bookdesc"] ) {
           window.location.href = 'index.php';
        }, 3000);
     </script>
-    <nav>
-      <div class="logo"></div>
-      <ul class="menu">
-        <div class="menu__item toggle"><span></span></div>
-        <li class="menu__item"><a href="" class="link link--dark"><i class="fa fa-github"></i> Login</a></li>
-      </ul>
-    </nav>
     <div class="hero">
       <h1 class="hero__title"><?php echo $result ?></h1><br>
       <h2 class="hero__title">Redirecting you back to the main page</h2>
