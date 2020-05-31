@@ -131,8 +131,7 @@ and is by no means production ready therefore please do not deploy it on product
   
   2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser and should look like the following image shown below
   
-  Inline-style: 
-![image1](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Book information webpage")
+![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
   
   
