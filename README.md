@@ -126,19 +126,32 @@ and is by no means production ready therefore please do not deploy it on product
    nginx-service   LoadBalancer   10.107.214.165   10.10.10.202   80:32098/TCP   6m16s   app=nginx
 
    ```
- 
-  *External IP is allocated by the external load balancer therefore depending on the subnet used your subnet may not be same
   
   2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser and should look like the following image shown below
   
 ![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
   
-  
+  3. Enter a example book information and submit the form if configured correctly the front-page should be updated with the new book information entered. 
+ 
+ ### Vertical and Horizontal pod auto scaler
+ ---
+
+ Before trying out the auto scaler. Let's take a look at their differences.
  
  
+| Horizontal        | Vertical           |
+| :------------: |:-------------:|
+| Increase number of containers based on metrics | Increase container resources based on metrics |
+| Mainly for Stateless pods | Mainly for Stateful pods |
+| Cannot run concurrently with VPA on the same metrics | Cannot run concurrently with HPA on the same metrics|
+
+__VPA__ = Vertical Pod Autoscaler <br>
+__HPA__ = Horizontal Pod Autoscaler
+
+In short the HPA creates more pods to spread out the workload among multiple different pods while the VPA increases the amount of computing power of the pod to process more requests. 
  
- 
+![image2]( https://www.redswitches.com/hs-fs/hubfs/scaling-image.jpg?width=790&name=scaling-image.jpg")
  
  
  
