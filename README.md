@@ -7,7 +7,12 @@ and is by no means production ready therefore please do not deploy it on product
 
 ---
 
-### Requirements
+## Contents
+- [Contents](#contents)
+  - [Prerequisites](#prerequisites)
+  - [Verify kubernetes cluster is running](#Verifykubernetesclusterisrunning)
+
+### Prerequisites
 
 1. Working kubernetes cluster
 2. External load balancer
@@ -133,12 +138,17 @@ and is by no means production ready therefore please do not deploy it on product
   
   
   3. Enter a example book information and submit the form if configured correctly the front-page should be updated with the new book information entered. 
- 
+
+<br>
+<br>
+
  ### Vertical and Horizontal pod auto scaler
  ---
 
  Before trying out the auto scaler. Let's take a look at their differences.
  
+<br>
+<br>
  
 | Horizontal        | Vertical           |
 | :------------: |:-------------:|
@@ -148,6 +158,9 @@ and is by no means production ready therefore please do not deploy it on product
 
 __VPA__ = Vertical Pod Autoscaler <br>
 __HPA__ = Horizontal Pod Autoscaler
+
+<br>
+<br>
 
 In short the HPA creates more pods to spread out the workload among multiple different pods while the VPA increases the amount of computing power of the pod to process more requests. 
  
