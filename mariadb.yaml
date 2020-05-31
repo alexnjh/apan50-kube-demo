@@ -53,17 +53,9 @@ spec:
           - name: mariadb-data
             mountPath: /var/lib/mysql
       volumes:
-        - name: mariadb-data
-          persistentVolumeClaim:
-            claimName: mariadb-data
-  volumeClaimTemplates:
-  - metadata:
-      name: mariadb-data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "ceph-fs"
-      resources:
-        requests:
-          storage: 5Gi
+         - name: mariadb-data
+            hostPath:
+              path: /data
+              type: Directory
 
 ---

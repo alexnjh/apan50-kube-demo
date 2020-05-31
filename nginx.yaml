@@ -15,7 +15,16 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: alexnjh/apan50-nginx-demo:0.0.2
+        image: alexnjh/apan50-nginx-demo:0.0.3
+        env:
+        - name: DB_ADDR
+          value: "mariadb-0.mariadb-service.default.svc.cluster.local:3306"
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASS
+          value: "password123"
+        - name: DB_SELECT
+          value: "apan50demo"
         ports:
         - name: web
           containerPort: 80
