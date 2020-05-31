@@ -107,22 +107,35 @@ and is by no means production ready therefore please do not deploy it on product
     nginx-69cc54b656-22zsr   1/1     Running   0          19s
     nginx-69cc54b656-7n785   1/1     Running   0          19s
     ```         
-    
- ---
+ 
  
  ### Test out the LEMP stack
----
+ ---
 
- Congratulations now our LEMP stack is deployed on the kuebrenetes cluster. Before going further let's test out our new LEMP stack.
+ Congratulations now our LEMP stack is deployed on the kubernetes cluster. Before going further let's test out our new LEMP stack.
  To access the nginx service we first need to know the IP address that is allocated by the external load balancer. To find it, 
  execute the following command and find the IP address under __EXTERNAL IP__
  
  
-  ``` 
-  NAME            TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)        AGE     SELECTOR
-  nginx-service   LoadBalancer   10.107.214.165   10.10.10.202   80:32098/TCP   6m16s   app=nginx
-  ```
+ 1. Get nginx service external ip address
  
+   ``` 
+   kubectl get svc nginx-service -o wide
+   
+   NAME            TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)        AGE     SELECTOR
+   nginx-service   LoadBalancer   10.107.214.165   10.10.10.202   80:32098/TCP   6m16s   app=nginx
+
+   ```
+ 
+  *External IP is allocated by the external load balancer therefore depending on the subnet used your subnet may not be same
+  
+  2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser and should look like the following image shown below
+  
+  Inline-style: 
+![image1](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Book information webpage")
+  
+  
+  
  
  
  
