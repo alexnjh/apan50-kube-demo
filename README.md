@@ -19,7 +19,8 @@ and is by no means production ready therefore please do not deploy it on product
 3. kube-metrics-server deployed in the cluster [(Link)](https://github.com/kubernetes-sigs/metrics-server)
 4. Vertical pod auto scaler deployed in the cluster [(Link)](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)
 
-<a name="VerifyKube"/> 
+<a name="VerifyKube"/></a> 
+
 ### Verify kubernetes cluster is running
 ---
 
@@ -36,7 +37,8 @@ and is by no means production ready therefore please do not deploy it on product
     kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   52d
     ```
 
-<a name=""/> 
+<a name=""/></a>
+
 ### Deploy mariadb container
 ---
 
