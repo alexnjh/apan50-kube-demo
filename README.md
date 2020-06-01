@@ -341,20 +341,20 @@ Run the following command to remove the HPA before proceeding
   
   6. We can verify this by running the describe command on the pod name and look at the current requested resources of the nginx pods. To get the pod names run __"kubectl get pods --selector=app=nginx"__
   
-    ```
-    kubectl describe pods nginx-69cc54b656-lpbf9
-    
-    *--- Output omitted for brevity --*
-   
-        Limits:
-          cpu:     2
-          memory:  1Gi
-        Requests:
-          cpu:      100m
-          memory:   128Mi
-          
-    *--- Output omitted for brevity --*
+      ```
+      kubectl describe pods nginx-69cc54b656-lpbf9
 
-    ``` 
+      *--- Output omitted for brevity --*
+
+          Limits:
+            cpu:     2
+            memory:  1Gi
+          Requests:
+            cpu:      100m
+            memory:   128Mi
+
+      *--- Output omitted for brevity --*
+
+      ``` 
 
   
