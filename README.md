@@ -10,7 +10,7 @@ and is by no means production ready therefore please do not deploy it on product
 ## Contents
 - [Contents](#contents)
   - [Prerequisites](#prerequisites)
-  - [Verify kubernetes cluster is running](#Verifykubernetesclusterisrunning)
+  - [Verify kubernetes cluster is running](#Verify kubernetes cluster is running)
 
 ### Prerequisites
 
