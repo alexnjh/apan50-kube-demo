@@ -1,4 +1,4 @@
-## APAN50 Kubernetes Demo <br> Setting up a LEMP stack and Pod Auto Scalers on Kubernetes
+## APAN50 Kubernetes Demo Tutorial<br> Setting up a LEMP stack and Pod Auto Scalers on Kubernetes
 ---
 
 ### DISCLAIMER
@@ -251,7 +251,7 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 <br>
 <br>
 
-At this point, the HPA is functioning. For this example, the metric use for scaling is CPU load although custom metrics can also be used but will require more specific configuration which is outside the scope of this tutorial.
+At this point, the HPA is functioning. For this example, the metric used for scaling is **CPU load** although custom metrics can also be used but will require more specific configuration which is outside the scope of this tutorial.
 
 Before moving on to the Vertical Pod Autoscaler example please remove the HPA from the cluster.This is to ensure the HPA will not affect the VPA.
     
@@ -343,4 +343,11 @@ As we can see, the VPA recommends the nginx pod to be configured with 25 milli-c
       *--- Output omitted for brevity --*
 
 
-  
+<br> 
+ 
+### Conclusion
+--- 
+
+This concludes the demostration regarding the different pod auto scalers and the steps required to deploy a workflow in a Kubernetes cluster. 
+
+Thank you for taking the time to read and go through the tutorial.
