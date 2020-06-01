@@ -335,8 +335,9 @@ Run the following command to remove the HPA before proceeding
 
     ``` 
     
-  As we can see, the VPA recommands the nginx pod to be configured with 25 milli-cpus and therefore this will result in the VPA recreating the pods to increase the CPU resources from 10m to 25m to meet the recommandation.
+    As we can see, the VPA recommands the nginx pod to be configured with 25 milli-cpus and therefore this will result in the VPA recreating the pods to increase the CPU resources from 10m to 25m to meet the recommandation.
   
+  <br>
   
   6. We can verify this by running the describe command on the pod name and look at the current requested resources of the nginx pods. To get the pod names run __"kubectl get pods --selector=app=nginx"__
   
