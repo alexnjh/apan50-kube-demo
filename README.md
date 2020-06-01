@@ -10,16 +10,18 @@ and is by no means production ready therefore please do not deploy it on product
 ## Contents
 - [Contents](#contents)
   - [Prerequisites](#prerequisites)
-  - [Verify kubernetes cluster is running](#VerifyKube)
+  - [Verify kubernetes cluster is running](#verifykube)
+  - [Deploy mariadb pod](#deploymariadb)
+  - [Deploy nginx-php-fpm pod](#deploynginx)
+  - [Test out the LEMP stack](#testoutstack)
 
 ### Prerequisites
 
 1. Working kubernetes cluster
-2. External load balancer
 3. kube-metrics-server deployed in the cluster [(Link)](https://github.com/kubernetes-sigs/metrics-server)
 4. Vertical pod auto scaler deployed in the cluster [(Link)](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)
 
-<a name="VerifyKube"/></a> 
+<a name="verifykube"/></a> 
 
 ### Verify kubernetes cluster is running
 ---
@@ -37,7 +39,7 @@ and is by no means production ready therefore please do not deploy it on product
     kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   52d
     ```
 
-<a name=""/></a>
+<a name="deploymariadb"/></a>
 
 ### Deploy mariadb container
 ---
@@ -75,7 +77,7 @@ and is by no means production ready therefore please do not deploy it on product
     mariadb-0   1/1     Running   0          13s
     ```       
     
- 
+<a name="deploynginx"/></a> 
 ### Deploy nginx-php-fpm container
 ---
 
@@ -115,7 +117,7 @@ and is by no means production ready therefore please do not deploy it on product
     nginx-69cc54b656-7n785   1/1     Running   0          19s
     ```         
  
- 
+ <a name="testoutstack"/></a>
  ### Test out the LEMP stack
  ---
 
@@ -144,6 +146,7 @@ and is by no means production ready therefore please do not deploy it on product
 <br>
 <br>
 
+<a name="autoscaler"/></a>
  ### Vertical and Horizontal pod auto scaler
  ---
 
