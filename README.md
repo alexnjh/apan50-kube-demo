@@ -2,7 +2,7 @@
 ---
 
 ### DISCLAIMER
-The information contain here is meant for showcasing the different pod auto scalers and to deploy a simple LEMP stack application
+The information contained here is meant for showcasing the different pod auto scalers and to deploy a simple LEMP stack application
 and is by no means production ready therefore please do not deploy it on production clusters.
 
 ---
@@ -15,35 +15,42 @@ and is by no means production ready therefore please do not deploy it on product
   - [Deploy nginx-php-fpm pod](#deploynginx)
   - [Test out the LEMP stack](#testoutstack)
 
+<br>
+
 ### Prerequisites
 
-1. Working kubernetes cluster
+1. Working Kubernetes cluster
 
 <a name="verifykube"/></a> 
 
-### Verify kubernetes cluster is running
+<br>
+
+### Verify Kubernetes cluster is running
 ---
 
-1. Run the following to check if the kubernetes service is running
+1. Run the following to check if the Kubernetes service is running
 
     ```
     kubectl get svc kubernetes
     ```
     
-    Expected output should be similar to the one shown below
+    The expected output should be similar to the one shown below
     
     ```
     NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
     kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   52d
     ```
 
+
+<br>
+
 <a name="deploymariadb"/></a>
 
-### Deploy mariadb container
+### Deploy MariaDB container
 ---
 
 1. Open up ``` mariadb.yaml ```
-2. Find and replace __MYSQL_ROOT_PASSWORD__ value to initialize the root users password during startup of the container
+2. Find and replace __MYSQL_ROOT_PASSWORD__ value to a password of your choice
 3. (Optional) Find and replace the __MYSQL_DATABASE__ value with the name of the database that the website will be using later.
 
     ```
@@ -61,7 +68,7 @@ and is by no means production ready therefore please do not deploy it on product
     ```
 
  
-5. Check if the pod is in the __Running__ state
+5. Check if the MariaDB pod is in the __Running__ state
 
     ```
     kubectl get pod --selector=app=mariadb
@@ -74,6 +81,8 @@ and is by no means production ready therefore please do not deploy it on product
     NAME        READY   STATUS    RESTARTS   AGE
     mariadb-0   1/1     Running   0          13s
     ```       
+ 
+ <br>
     
 <a name="deploynginx"/></a> 
 ### Deploy nginx-php-fpm container
@@ -115,16 +124,18 @@ and is by no means production ready therefore please do not deploy it on product
     nginx-69cc54b656-7n785   1/1     Running   0          19s
     ```         
  
+ <br>
+ 
  <a name="testoutstack"/></a>
  ### Test out the LEMP stack
  ---
 
- Congratulations now our LEMP stack is deployed on the kubernetes cluster. Before going further let's test out our new LEMP stack.
- If using minikube please refer to [this](#minikube-portforward) if not follow the instructions below.
+ Congratulations now our LEMP stack is deployed on the Kubernetes cluster. Before going further let's test out our new LEMP stack.
+ If your using minikube please refer to [this](#minikube-portforward) if not follow the instructions below according to the service type of your choice
  
  #### 1. Using external load balancer
  
- 1. Get nginx service external ip address 
+ 1. Get nginx service external IP address 
  
    ``` 
    kubectl get svc nginx-service -o wide
@@ -134,11 +145,11 @@ and is by no means production ready therefore please do not deploy it on product
 
    ```
    
-  2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser.For example if my worker node IP address is 10.10.10.202, to access the website I will enter http://10.10.10.202 and the website should look like [this](#image2)
+  2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser. For example, if the worker node's IP address is 10.10.10.202, to access the website I will enter http://10.10.10.202 and the website should look like [this](#image2)
    
  #### 2. Using NodePort
  
- 1. Get nginx service external ip address 
+ 1. Get nginx service external IP address 
  
    ``` 
    kubectl get svc nginx-service -o wide
@@ -148,17 +159,17 @@ and is by no means production ready therefore please do not deploy it on product
 
    ```
 
-  2. Access the website by typing the nginx service __NODE IP:PORT NUMBER__ address inside a web browser.For example if my worker node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:32098 and the website should look like [this](#image2)
+  2. Access the website by typing the nginx service __NODE IP:PORT NUMBER__ address inside a web browser. For example, if the worker node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:32098 and the website should look like [this](#image2)
 
  <a name="minikube-portforward"/></a>
  #### 3. Using service and portforwarding (Only for minikube)
  
-  1. Open another terminal and enter the following command to portforward the port to the minikube vm
+  1. Open another terminal and enter the following command to port forward the port to the minikube virtual machine
  
    ``` 
    kubectl port-forward --address 0.0.0.0 svc/nginx-service 80:80
    ```
-  2. Access the website by typing the nginx service __MINIKUBE NODE IP__ address inside a web browser.For example if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
+  2. Access the website by typing the nginx service __MINIKUBE NODE IP__ address inside a web browser. For example, if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
 
 
 <a name="image2"/></a>
@@ -166,7 +177,7 @@ and is by no means production ready therefore please do not deploy it on product
 ![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
   
-  3. Enter a information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information. 
+  3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information. 
 
 <br>
 <br>
@@ -192,7 +203,7 @@ __HPA__ = Horizontal Pod Autoscaler
 <br>
 <br>
 
-In short the HPA creates more pods to spread out the workload among multiple different pods while the VPA increases the amount of computing power of the pod to process more requests. 
+In short, the HPA creates more pods to spread out the workload among multiple different pods while the VPA increases the amount of computing power of the pod to process more requests. 
  
 ![image2](https://i.ibb.co/Wn2pYv9/image2.jpg")
 
@@ -229,15 +240,15 @@ In short the HPA creates more pods to spread out the workload among multiple dif
 
     ``` 
     
-5. HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial cpu load on the pods and see the HPA in action. 
+5. HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial CPU load on the pods and see the HPA in action. 
 
-    1. To increase the load open the sample website and click on benchmark on the top right hand corner
+    1. To increase the load open the sample website and click on the benchmark on the top right-hand corner
 
     ![image3](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
     
-    2. Click on submit, this will increase the cpu load to around 100% for 1 minute
+    2. Click on submit, this will increase the CPU load to around 100% for 1 minute
     
-    3. After around 40 second the HPA will create a few more pods to spread out the load as shown below
+    3. After around 40 seconds the HPA will create a few more pods to spread out the load as shown below
     
     ```
     Before:
@@ -258,7 +269,7 @@ In short the HPA creates more pods to spread out the workload among multiple dif
     
     ```
 
-At this point the HPA is functioning. For this example the metric use for scaling is CPU load although custom metrics can also be used but will require more configuration.
+At this point, the HPA is functioning. For this example, the metric use for scaling is CPU load although custom metrics can also be used but will require more configuration.
 
 Before moving on to the Vertical Pod Autoscaler example please remove the HPA first as for the example for VPA we are using the CPU load as the metric which is a limitation as HPA and VPA can run concurrently using the same metrics
 
@@ -278,8 +289,9 @@ Run the following command to remove the HPA before proceeding
     ./autoscaler/vertical-pod-autoscaler/hack/vpa-up.sh
     ```
     
-2. Before deploying the VPA we first need to understand under which cicumstances will the the VPA redeploy the pod with more resources.
-    - When the pod requested resource is below the lowerbound or the current CPU load is above the upperbound values in the VPA recommandation
+2. Before deploying the VPA we first need to understand under which circumstances will the VPA redeploy the pod with more resources.
+
+The VPA will redeploy the pod when the pod requested resource is below the lower bound or the current CPU load is above the upper bound values in the VPA recommendation
 
     
 3. Now we take a look at the current requested resources used by the nginx pod look for label __requests__
@@ -307,7 +319,7 @@ Run the following command to remove the HPA before proceeding
 
     ``` 
     
-5. Let's take a look at the recommandation by the VPA
+5. Let's take a look at the recommendation by the VPA
 
     ```
     kubectl describe pods --selector=app=nginx
@@ -333,7 +345,7 @@ Run the following command to remove the HPA before proceeding
 
     ``` 
     
-    As we can see, the VPA recommands the nginx pod to be configured with 25 milli-cpus and therefore this will result in the VPA recreating the pods to increase the CPU resources from 10m to 25m to meet the recommandation.
+    As we can see, the VPA recommends the nginx pod to be configured with 25 milli-cpus and therefore this will result in the VPA recreating the pods to increase the CPU resources from 10m to 25m to meet the recommendation.
   
   <br>
   
