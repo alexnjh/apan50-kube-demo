@@ -1,4 +1,6 @@
-## APAN50 Kubernetes Demo Tutorial<br> Setting up a LEMP stack and Pod Auto Scalers on Kubernetes
+
+![title](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/default.png "Title")
+## Setting up a LEMP stack and Pod Auto Scalers on Kubernetes
 
 ### :red_circle: DISCLAIMER
 The information contained here is meant for showcasing the different pod auto scalers and to deploy a simple LEMP stack application
