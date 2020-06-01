@@ -13,6 +13,10 @@ and is by no means production ready therefore please do not deploy it on product
   - [Deploy mariadb pod](#deploymariadb)
   - [Deploy nginx-php-fpm pod](#deploynginx)
   - [Test out the LEMP stack](#testoutstack)
+  - [Vertical and Horizontal pod auto scaler](#autoscaler)
+  - [Testing out the horizontal pod autoscaler](#testouthpa)
+  - [Testing out the vertical pod autoscaler](#testoutvpa) 
+  - [Conclusion](#conclusion) 
 
 <br>
 
@@ -80,7 +84,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 **1. Open up ``` nginx.yaml ```**
 
-**2. Find and replace the __DB_SELECT value with the __MYSQL_DATABASE value and __DB_PASS value with the __MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion**
+**2. Find and replace the DB_SELECT value with the MYSQL_DATABASE value and DB_PASS value with the MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion**
 
     env:
     - name: DB_ADDR
@@ -117,7 +121,7 @@ and is by no means production ready therefore please do not deploy it on product
  ---
 
  Congratulations now our LEMP stack is deployed on the Kubernetes cluster. Before going further let's test out our new LEMP stack.
- If your using minikube please refer to [this](#minikube-portforward) if not follow the instructions below according to the service type of your choice
+ **If your using minikube please refer to [this](#minikube-portforward) if not follow the instructions below according to the service type of your choice**
  
  #### 1. Using external load balancer
  
@@ -193,6 +197,10 @@ In short, the HPA creates more pods to spread out the workload among multiple di
  
 ![image2](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image2.jpg "Autoscaler")
 
+<br>
+
+
+<a name="testouthpa"/></a>
 ### Testing out the horizontal pod autoscaler
 ---
 
@@ -264,14 +272,19 @@ Run the following command to remove the HPA before proceeding
 
  
 <br> 
- 
+
+<a name="testoutvpa"/></a>
 ### Testing out the vertical pod autoscaler
 ---
 
 **1. Deploy the vertical pod autoscaler controller manifest (Skip to step 2 if VPA controller is deployed)**
 
+    # Clone autoscaler repo
     git clone https://github.com/kubernetes/autoscaler.git
+    
+    # Run start up script
     ./autoscaler/vertical-pod-autoscaler/hack/vpa-up.sh
+    
     
 **2. Before deploying the VPA we first need to understand under which circumstances will the VPA redeploy the pod with more resources.**
 
