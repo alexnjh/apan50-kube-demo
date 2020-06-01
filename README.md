@@ -19,7 +19,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 ### Prerequisites
 
-__1. Working Kubernetes cluster
+__1. Working Kubernetes cluster__
 
 <a name="verifykube"/></a> 
 
