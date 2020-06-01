@@ -18,8 +18,6 @@ and is by no means production ready therefore please do not deploy it on product
 ### Prerequisites
 
 1. Working kubernetes cluster
-3. kube-metrics-server deployed in the cluster [(Link)](https://github.com/kubernetes-sigs/metrics-server)
-4. Vertical pod auto scaler deployed in the cluster [(Link)](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)
 
 <a name="verifykube"/></a> 
 
