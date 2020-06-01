@@ -221,13 +221,13 @@ In short, the HPA creates more pods to spread out the workload among multiple di
     
 **5. HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial CPU load on the pods and see the HPA in action**
 
-  1. To increase the load open the sample website and click on the benchmark on the top right-hand corner
+  * To increase the load open the sample website and click on the benchmark on the top right-hand corner
 
   ![image3](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
 
-  2. Click on submit, this will increase the CPU load to around 100% for 1 minute
+  * Click on submit, this will increase the CPU load to around 100% for 1 minute
 
-  3. After around 40 seconds the HPA will create a few more pods to spread out the load as shown below
+  * After around 40 seconds the HPA will create a few more pods to spread out the load as shown below
     
     
     Before:
@@ -247,6 +247,7 @@ In short, the HPA creates more pods to spread out the workload among multiple di
     nginx-69cc54b656-pt5th   2/2     Running   0          45s
     
 
+<br>
 <br>
 
 At this point, the HPA is functioning. For this example, the metric use for scaling is CPU load although custom metrics can also be used but will require more specific configuration which is outside the scope of this tutorial.
