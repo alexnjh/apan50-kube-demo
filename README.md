@@ -1,22 +1,26 @@
 ## APAN50 Kubernetes Demo Tutorial<br> Setting up a LEMP stack and Pod Auto Scalers on Kubernetes
 
-### DISCLAIMER
+### :red_circle: DISCLAIMER
 The information contained here is meant for showcasing the different pod auto scalers and to deploy a simple LEMP stack application
 and is by no means production ready therefore please do not deploy it on production clusters.
 
 ---
 
-## Contents
+## :page_facing_up: Contents
 - [Contents](#contents)
   - [Prerequisites](#prerequisites)
   - [Verify kubernetes cluster is running](#verifykube)
   - [Deploy mariadb pod](#deploymariadb)
   - [Deploy nginx-php-fpm pod](#deploynginx)
   - [Test out the LEMP stack](#testoutstack)
+  - [Vertical and Horizontal pod auto scaler](#autoscaler)
+  - [Testing out the horizontal pod autoscaler](#testouthpa)
+  - [Testing out the vertical pod autoscaler](#testoutvpa) 
+  - [Conclusion](#conclusion) 
 
 <br>
 
-### Prerequisites
+### :grey_exclamation: Prerequisites
 
 1. Working Kubernetes cluster
 
@@ -24,7 +28,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 <br>
 
-### Verify Kubernetes cluster is running
+### :star: Verify Kubernetes cluster is running
 ---
 
 **1. Run the following to check if the Kubernetes service is running**
@@ -41,7 +45,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 <a name="deploymariadb"/></a>
 
-### Deploy MariaDB container
+### :star: Deploy MariaDB container
 ---
 
 **1. Open up ``` mariadb.yaml ```**
@@ -75,12 +79,12 @@ and is by no means production ready therefore please do not deploy it on product
  <br>
     
 <a name="deploynginx"/></a> 
-### Deploy nginx-php-fpm container
+### :star: Deploy nginx-php-fpm container
 ---
 
 **1. Open up ``` nginx.yaml ```**
 
-**2. Find and replace the __DB_SELECT value with the __MYSQL_DATABASE value and __DB_PASS value with the __MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion**
+**2. Find and replace the DB_SELECT value with the MYSQL_DATABASE value and DB_PASS value with the MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion**
 
     env:
     - name: DB_ADDR
@@ -113,11 +117,12 @@ and is by no means production ready therefore please do not deploy it on product
  <br>
  
  <a name="testoutstack"/></a>
- ### Test out the LEMP stack
+ ### :star: Test out the LEMP stack
  ---
 
  Congratulations now our LEMP stack is deployed on the Kubernetes cluster. Before going further let's test out our new LEMP stack.
- If your using minikube please refer to [this](#minikube-portforward) if not follow the instructions below according to the service type of your choice
+ 
+ :exclamation:  **If your using minikube please refer to [this](#minikube-portforward) if not follow the instructions below according to the service type of your choice**
  
  #### 1. Using external load balancer
  
@@ -169,7 +174,7 @@ and is by no means production ready therefore please do not deploy it on product
 <br>
 
 <a name="autoscaler"/></a>
- ### Vertical and Horizontal pod auto scaler
+ ### :star: Vertical and Horizontal pod auto scaler
  ---
 
  Before trying out the auto scaler. Let's take a look at their differences.
@@ -193,7 +198,11 @@ In short, the HPA creates more pods to spread out the workload among multiple di
  
 ![image2](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image2.jpg "Autoscaler")
 
-### Testing out the horizontal pod autoscaler
+<br>
+
+
+<a name="testouthpa"/></a>
+### :star: Testing out the horizontal pod autoscaler
 ---
 
 **1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics**
@@ -256,7 +265,7 @@ Non-Minikube : ```kubectl apply -f https://github.com/kubernetes-sigs/metrics-se
 
 At this point, the HPA is functioning. For this example, the metric used for scaling is **CPU load** although custom metrics can also be used but will require more specific configuration which is outside the scope of this tutorial.
 
-Before moving on to the Vertical Pod Autoscaler example please remove the HPA from the cluster.This is to ensure the HPA will not affect the VPA.
+:exclamation:  Before moving on to the Vertical Pod Autoscaler example please remove the HPA from the cluster.This is to ensure the HPA will not affect the VPA.
     
 Run the following command to remove the HPA before proceeding
 
@@ -264,14 +273,19 @@ Run the following command to remove the HPA before proceeding
 
  
 <br> 
- 
-### Testing out the vertical pod autoscaler
+
+<a name="testoutvpa"/></a>
+### :star: Testing out the vertical pod autoscaler
 ---
 
 **1. Deploy the vertical pod autoscaler controller manifest (Skip to step 2 if VPA controller is deployed)**
 
+    # Clone autoscaler repo
     git clone https://github.com/kubernetes/autoscaler.git
+    
+    # Run start up script
     ./autoscaler/vertical-pod-autoscaler/hack/vpa-up.sh
+    
     
 **2. Before deploying the VPA we first need to understand under which circumstances will the VPA redeploy the pod with more resources.**
 
@@ -284,9 +298,6 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
     
     *--- Output omitted for brevity --*
    
-        Limits:
-          cpu:     1
-          memory:  128Mi
         Requests:
           cpu:        5m
           memory:     64Mi
@@ -336,19 +347,16 @@ As we can see, the VPA recommends the nginx pod to be configured with 25 milli-c
 
       *--- Output omitted for brevity --*
 
-          Limits:
-            cpu:     2
-            memory:  1Gi
           Requests:
-            cpu:      100m
-            memory:   128Mi
+            cpu:      25m
+            memory:   262144k
 
       *--- Output omitted for brevity --*
 
 
 <br> 
  
-### Conclusion
+### :star: Conclusion
 --- 
 
 This concludes the demostration regarding the different pod auto scalers and the steps required to deploy a workflow in a Kubernetes cluster. 
