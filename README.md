@@ -219,7 +219,7 @@ In short the HPA creates more pods to spread out the workload among multiple dif
     kubectl apply -f pod_auto_scaler/hpa.yaml
     ```
   
-2. Verify HPA is working. (May need to run the command multiple times)
+4. Verify HPA is working. (May need to run the command multiple times)
 
     ```
     kubectl get hpa nginx
@@ -229,5 +229,32 @@ In short the HPA creates more pods to spread out the workload among multiple dif
     NAME    REFERENCE          TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
     nginx   Deployment/nginx   5%/50%    1         5         2          23s
 
-    ```   
+    ``` 
     
+5. HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial cpu load on the pods and see the HPA in action. 
+
+    1. To increase the load open the sample website and click on benchmark on the top right hand corner
+
+    ![image3](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
+    
+    2. Click on submit, this will increase the cpu load to around 100% for 1 minute
+    
+    3. After around 40 second the HPA will create a few more pods to spread out the load as shown below
+    
+    ```
+    Before:
+    
+    NAME                     READY   STATUS    RESTARTS   AGE
+    mariadb-0                1/1     Running   0          19h
+    nginx-69cc54b656-lpbf9   2/2     Running   0          19h
+    
+    After:
+    
+    NAME                     READY   STATUS    RESTARTS   AGE
+    mariadb-0                1/1     Running   0          19h
+    nginx-69cc54b656-758bz   2/2     Running   0          44s
+    nginx-69cc54b656-c2v7q   2/2     Running   0          45s
+    nginx-69cc54b656-jllsj   2/2     Running   0          45s
+    nginx-69cc54b656-lpbf9   2/2     Running   0          19h
+    nginx-69cc54b656-pt5th   2/2     Running   0          45s
+
