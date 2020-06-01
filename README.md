@@ -28,7 +28,7 @@ and is by no means production ready therefore please do not deploy it on product
 ### Verify Kubernetes cluster is running
 ---
 
-1. __Run the following to check if the Kubernetes service is running
+__1. __Run the following to check if the Kubernetes service is running
 
     ```
     kubectl get svc kubernetes
