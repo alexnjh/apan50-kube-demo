@@ -197,8 +197,8 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 ---
 
 **1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics**
-
-Minikube : ```minikube addons enable metrics-server```
+ <br>
+Minikube : ```minikube addons enable metrics-server``` <br>
 Non-Minikube : ```kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml```
     
     
