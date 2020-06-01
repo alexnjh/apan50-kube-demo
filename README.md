@@ -157,7 +157,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 <a name="image2"/></a>
 
-![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
+![image2](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image2.jpg "Book information webpage")
   
   
   **3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information.**
@@ -222,7 +222,7 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 
   * To increase the load open the sample website and click on the benchmark on the top right-hand corner
 
-  ![image3](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
+  ![image3](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image3.jpg "Book information webpage")
 
   * Click on submit, this will increase the CPU load to around 100% for 1 minute
 
