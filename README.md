@@ -1,12 +1,12 @@
 ## APAN50 Kubernetes Demo Tutorial<br> Setting up a LEMP stack and Pod Auto Scalers on Kubernetes
 
-### DISCLAIMER
+### :red_circle: DISCLAIMER
 The information contained here is meant for showcasing the different pod auto scalers and to deploy a simple LEMP stack application
 and is by no means production ready therefore please do not deploy it on production clusters.
 
 ---
 
-## Contents
+## :page_facing_up: Contents
 - [Contents](#contents)
   - [Prerequisites](#prerequisites)
   - [Verify kubernetes cluster is running](#verifykube)
@@ -20,7 +20,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 <br>
 
-### Prerequisites
+### :grey_exclamation: Prerequisites
 
 1. Working Kubernetes cluster
 
