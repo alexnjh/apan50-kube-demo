@@ -284,9 +284,6 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
     
     *--- Output omitted for brevity --*
    
-        Limits:
-          cpu:     1
-          memory:  128Mi
         Requests:
           cpu:        5m
           memory:     64Mi
@@ -336,12 +333,9 @@ As we can see, the VPA recommends the nginx pod to be configured with 25 milli-c
 
       *--- Output omitted for brevity --*
 
-          Limits:
-            cpu:     2
-            memory:  1Gi
           Requests:
-            cpu:      100m
-            memory:   128Mi
+            cpu:      25m
+            memory:   262144k
 
       *--- Output omitted for brevity --*
 
