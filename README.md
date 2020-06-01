@@ -45,7 +45,9 @@ and is by no means production ready therefore please do not deploy it on product
 ---
 
 **1. Open up ``` mariadb.yaml ```**
+
 **2. Find and replace MYSQL_ROOT_PASSWORD value to a password of your choice**
+
 **3. (Optional) Find and replace the MYSQL_DATABASE value with the name of the database that the website will be using later.**
 
     env:
