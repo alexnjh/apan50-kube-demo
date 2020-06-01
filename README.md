@@ -79,7 +79,7 @@ and is by no means production ready therefore please do not deploy it on product
  <br>
     
 <a name="deploynginx"/></a> 
-### Deploy nginx-php-fpm container
+### :star: Deploy nginx-php-fpm container
 ---
 
 **1. Open up ``` nginx.yaml ```**
