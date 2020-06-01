@@ -229,7 +229,7 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 
   * After around 40 seconds the HPA will create a few more pods to spread out the load as shown below
     
-    
+      ```    
       Before:
 
       NAME                     READY   STATUS    RESTARTS   AGE
@@ -245,6 +245,7 @@ In short, the HPA creates more pods to spread out the workload among multiple di
       nginx-69cc54b656-jllsj   2/2     Running   0          45s
       nginx-69cc54b656-lpbf9   2/2     Running   0          19h
       nginx-69cc54b656-pt5th   2/2     Running   0          45s
+      ```
     
 
 <br>
