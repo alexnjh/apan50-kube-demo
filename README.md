@@ -49,9 +49,9 @@ and is by no means production ready therefore please do not deploy it on product
 ### Deploy MariaDB container
 ---
 
-1. __Open up ``` mariadb.yaml ```
-2. __Find and replace __MYSQL_ROOT_PASSWORD value to a password of your choice
-3. __(Optional) Find and replace the __MYSQL_DATABASE value with the name of the database that the website will be using later.
+**1. Open up ``` mariadb.yaml ```**
+**2. Find and replace __MYSQL_ROOT_PASSWORD value to a password of your choice**
+**3. (Optional) Find and replace the __MYSQL_DATABASE value with the name of the database that the website will be using later.**
 
     ```
     env:
@@ -61,14 +61,14 @@ and is by no means production ready therefore please do not deploy it on product
       value: "apan50demo" # Set database name here
     ```
 
-4. __Save the file and apply the mariadb manifest
+**4. Save the file and apply the mariadb manifest**
 
     ```
     kubectl apply -f mariadb.yaml
     ```
 
  
-5. __Check if the MariaDB pod is in the __Running__ state
+**5. Check if the MariaDB pod is in the __Running__ state**
 
     ```
     kubectl get pod --selector=app=mariadb
@@ -88,8 +88,8 @@ and is by no means production ready therefore please do not deploy it on product
 ### Deploy nginx-php-fpm container
 ---
 
-1. __Open up ``` nginx.yaml ```
-2. __Find and replace the __DB_SELECT value with the __MYSQL_DATABASE value and __DB_PASS value with the __MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion
+**1. Open up ``` nginx.yaml ```**
+**2. Find and replace the __DB_SELECT value with the __MYSQL_DATABASE value and __DB_PASS value with the __MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion**
 
     ```
     env:
@@ -102,14 +102,14 @@ and is by no means production ready therefore please do not deploy it on product
     - name: DB_SELECT
       value: "apan50demo"
     ```
-3. __Save the file and apply the mariadb manifest
+**3. Save the file and apply the mariadb manifest**
 
     ```
     kubectl apply -f nginx.yaml
     ```
 
  
-4. __Check if the pod is in the __Running__ state
+**4. Check if the pod is in the __Running__ state**
 
     ```
     kubectl get pod --selector=app=nginx
@@ -135,7 +135,7 @@ and is by no means production ready therefore please do not deploy it on product
  
  #### 1. Using external load balancer
  
- 1. __Get nginx service external IP address 
+ **1. Get nginx service external IP address**
  
    ``` 
    kubectl get svc nginx-service -o wide
@@ -145,11 +145,11 @@ and is by no means production ready therefore please do not deploy it on product
 
    ```
    
-  2. __Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser. For example, if the worker node's IP address is 10.10.10.202, to access the website I will enter http://10.10.10.202 and the website should look like [this](#image2)
+  **2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser. For example, if the worker node's IP address is 10.10.10.202, to access the website I will enter http://10.10.10.202 and the website should look like [this](#image2)**
    
  #### 2. Using NodePort
  
- 1. __Get nginx service external IP address 
+ 1. Get nginx service external IP address 
  
    ``` 
    kubectl get svc nginx-service -o wide
@@ -159,17 +159,17 @@ and is by no means production ready therefore please do not deploy it on product
 
    ```
 
-  2. __Access the website by typing the nginx service __NODE IP:PORT NUMBER address inside a web browser. For example, if the worker node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:32098 and the website should look like [this](#image2)
+  2. Access the website by typing the nginx service __NODE IP:PORT NUMBER address inside a web browser. For example, if the worker node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:32098 and the website should look like [this](#image2)
 
  <a name="minikube-portforward"/></a>
  #### 3. Using service and portforwarding (Only for minikube)
  
-  1. __Open another terminal and enter the following command to port forward the port to the minikube virtual machine
+  1. Open another terminal and enter the following command to port forward the port to the minikube virtual machine
  
    ``` 
    kubectl port-forward --address 0.0.0.0 svc/nginx-service 80:80
    ```
-  2. __Access the website by typing the nginx service __MINIKUBE NODE IP__ address inside a web browser. For example, if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
+  2. Access the website by typing the nginx service __MINIKUBE NODE IP__ address inside a web browser. For example, if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
 
 
 <a name="image2"/></a>
@@ -177,7 +177,7 @@ and is by no means production ready therefore please do not deploy it on product
 ![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
   
-  3. __Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information. 
+  **3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information. **
 
 <br>
 <br>
@@ -210,25 +210,25 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 ### Testing out the horizontal pod autoscaler
 ---
 
-1. __We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics
+**1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics**
 
     ```
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
     ```
     
-2. __Ensure the kube-metrics-server is in the __Running__ state
+**2. Ensure the kube-metrics-server is in the __Running__ state**
 
     ```
     kubectl get pods  -n kube-system | awk '/metrics-server/{print}'
     ```
     
-3. __We now apply the HPA manifest
+**3. We now apply the HPA manifest**
 
     ```
     kubectl apply -f pod_auto_scaler/hpa.yaml
     ```
   
-4. __Verify HPA is working. (May need to run the command multiple times)
+**4. Verify HPA is working. (May need to run the command multiple times)**
 
     ```
     kubectl get hpa nginx
@@ -240,7 +240,7 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 
     ``` 
     
-5. __HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial CPU load on the pods and see the HPA in action
+**5. HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial CPU load on the pods and see the HPA in action**
 
     1. To increase the load open the sample website and click on the benchmark on the top right-hand corner
 
@@ -286,19 +286,19 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 ### Testing out the vertical pod autoscaler
 ---
 
-1. __Deploy the vertical pod autoscaler controller manifest (Skip to step 2 if VPA controller is deployed)
+**1. Deploy the vertical pod autoscaler controller manifest (Skip to step 2 if VPA controller is deployed)**
 
     ```
     git clone https://github.com/kubernetes/autoscaler.git
     ./autoscaler/vertical-pod-autoscaler/hack/vpa-up.sh
     ```
     
-2. __Before deploying the VPA we first need to understand under which circumstances will the VPA redeploy the pod with more resources.
+**2. Before deploying the VPA we first need to understand under which circumstances will the VPA redeploy the pod with more resources.**
 
 The VPA will redeploy the pod when the pod requested resource is below the lower bound or the current CPU load is above the upper bound values in the VPA recommendation
 
     
-3. __Now we take a look at the current requested resources used by the nginx pod look for label __requests__
+**3. Now we take a look at the current requested resources used by the nginx pod look for label requests **
 
     ```
     kubectl describe pods --selector=app=nginx
@@ -316,14 +316,14 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
 
     ``` 
     
-4. __Next apply the VPA manifest file
+**4. Next apply the VPA manifest file**
 
     ```
     kubectl apply -f pod_auto_scaler/vpa.yaml
 
     ``` 
     
-5. __Let's take a look at the recommendation by the VPA
+**5. Let's take a look at the recommendation by the VPA**
 
     ```
     kubectl describe pods --selector=app=nginx
@@ -353,7 +353,7 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
   
   <br>
   
-  6. __We can verify this by running the describe command on the pod name and look at the current requested resources of the nginx pods. To get the pod names run __"kubectl get pods --selector=app=nginx"__
+  **6. We can verify this by running the describe command on the pod name and look at the current requested resources of the nginx pods. To get the pod names run "kubectl get pods --selector=app=nginx" **
   
       ```
       kubectl describe pods nginx-69cc54b656-lpbf9
