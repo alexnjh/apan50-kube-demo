@@ -124,7 +124,7 @@ and is by no means production ready therefore please do not deploy it on product
  Congratulations now our LEMP stack is deployed on the kubernetes cluster. Before going further let's test out our new LEMP stack.
  If using minikube please refer to [this](#minikube-portforward) if not follow the instructions below.
  
- #### Using external load balancer
+ #### 1. Using external load balancer
  
  1. Get nginx service external ip address 
  
@@ -138,7 +138,7 @@ and is by no means production ready therefore please do not deploy it on product
    
   2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser.For example if my worker node IP address is 10.10.10.202, to access the website I will enter http://10.10.10.202 and the website should look like [this](#image2)
    
- #### Using NodePort
+ #### 2. Using NodePort
  
  1. Get nginx service external ip address 
  
@@ -153,7 +153,7 @@ and is by no means production ready therefore please do not deploy it on product
   2. Access the website by typing the nginx service __NODE IP:PORT NUMBER__ address inside a web browser.For example if my worker node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:32098 and the website should look like [this](#image2)
 
  <a name="minikube-portforward"/></a>
- #### Using service and portforwarding (Only for minikube)
+ #### 3. Using service and portforwarding (Only for minikube)
  
   1. Open another terminal and enter the following command to portforward the port to the minikube vm
  
@@ -164,6 +164,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 
 <a name="image2"/></a>
+
 ![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
   
