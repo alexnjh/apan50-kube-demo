@@ -157,7 +157,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 <a name="image2"/></a>
 
-![image2](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image2.jpg "Book information webpage")
+![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
   
   **3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information.**
@@ -188,7 +188,7 @@ __HPA__ = Horizontal Pod Autoscaler
 
 In short, the HPA creates more pods to spread out the workload among multiple different pods while the VPA increases the amount of computing power of the pod to process more requests. 
  
-![image2](https://i.ibb.co/Wn2pYv9/image2.jpg")
+![image2](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image2.jpg "Autoscaler")
 
 ### Testing out the horizontal pod autoscaler
 ---
