@@ -75,7 +75,7 @@ and is by no means production ready therefore please do not deploy it on product
     ```    
    <br>
    
-    __*Ensure the output of the command above is similar to the one shown below before proceeding to the next step__
+   ***Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
     
     ```
     NAME        READY   STATUS    RESTARTS   AGE
