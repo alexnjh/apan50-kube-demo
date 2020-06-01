@@ -122,11 +122,11 @@ and is by no means production ready therefore please do not deploy it on product
  ---
 
  Congratulations now our LEMP stack is deployed on the kubernetes cluster. Before going further let's test out our new LEMP stack.
- To access the nginx service we first need to know the IP address that is allocated by the external load balancer. To find it, 
- execute the following command and find the IP address under __EXTERNAL IP__
+ If using minikube please refer to [this](#minikube-portforward) if not follow the instructions below.
  
+ #### Using external load balancer
  
- 1. Get nginx service external ip address
+ 1. Get nginx service external ip address 
  
    ``` 
    kubectl get svc nginx-service -o wide
@@ -135,9 +135,35 @@ and is by no means production ready therefore please do not deploy it on product
    nginx-service   LoadBalancer   10.107.214.165   10.10.10.202   80:32098/TCP   6m16s   app=nginx
 
    ```
-  
-  2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser and should look like the following image shown below
-  
+   
+  2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser.For example if my worker node IP address is 10.10.10.202, to access the website I will enter http://10.10.10.202 and the website should look like [this](#image2)
+   
+ #### Using NodePort
+ 
+ 1. Get nginx service external ip address 
+ 
+   ``` 
+   kubectl get svc nginx-service -o wide
+   
+   NAME            TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)        AGE     SELECTOR
+   nginx-service   NodePort       10.107.214.165                  80:32098/TCP   6m16s   app=nginx
+
+   ```
+
+  2. Access the website by typing the nginx service __NODE IP:PORT NUMBER__ address inside a web browser.For example if my worker node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:32098 and the website should look like [this](#image2)
+
+ <a name="minikube-portforward"/></a>
+ #### Using service and portforwarding (Only for minikube)
+ 
+  1. Open another terminal and enter the following command to portforward the port to the minikube vm
+ 
+   ``` 
+   kubectl port-forward --address 0.0.0.0 svc/nginx-service 80:80
+   ```
+  2. Access the website by typing the nginx service __MINIKUBE NODE IP__ address inside a web browser.For example if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
+
+
+<a name="image2"/></a>
 ![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
   
