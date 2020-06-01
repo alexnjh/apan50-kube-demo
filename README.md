@@ -30,16 +30,14 @@ and is by no means production ready therefore please do not deploy it on product
 
 **1. Run the following to check if the Kubernetes service is running**
 
-    ```
+
     kubectl get svc kubernetes
-    ```
     
     The expected output should be similar to the one shown below
     
-    ```
     NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
     kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   52d
-    ```
+
 
 
 <br>
@@ -59,12 +57,14 @@ and is by no means production ready therefore please do not deploy it on product
       value: "password123" # Set root password here
     - name: MYSQL_DATABASE
       value: "apan50demo" # Set database name here
+      
     ```
 
 **4. Save the file and apply the mariadb manifest**
 
     ```
     kubectl apply -f mariadb.yaml
+    
     ```
 
  
@@ -72,14 +72,17 @@ and is by no means production ready therefore please do not deploy it on product
 
     ```
     kubectl get pod --selector=app=mariadb
+    
     ```    
-   <br>
+<br>
    
 ***Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
     
     ```
+    
     NAME        READY   STATUS    RESTARTS   AGE
     mariadb-0   1/1     Running   0          13s
+    
     ```       
  
  <br>
