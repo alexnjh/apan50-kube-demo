@@ -304,7 +304,7 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
 **5. Let's take a look at the recommendation by the VPA**
 
 
-    kubectl describe pods --selector=app=nginx
+    kubectl describe vpa nginx
     
     *--- Output omitted for brevity --*
    
