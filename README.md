@@ -50,8 +50,8 @@ and is by no means production ready therefore please do not deploy it on product
 ---
 
 **1. Open up ``` mariadb.yaml ```**
-**2. Find and replace __MYSQL_ROOT_PASSWORD value to a password of your choice**
-**3. (Optional) Find and replace the __MYSQL_DATABASE value with the name of the database that the website will be using later.**
+**2. Find and replace MYSQL_ROOT_PASSWORD value to a password of your choice**
+**3. (Optional) Find and replace the MYSQL_DATABASE value with the name of the database that the website will be using later.**
 
     ```
     env:
@@ -75,7 +75,7 @@ and is by no means production ready therefore please do not deploy it on product
     ```    
    <br>
    
-   ***Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
+***Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
     
     ```
     NAME        READY   STATUS    RESTARTS   AGE
@@ -116,7 +116,7 @@ and is by no means production ready therefore please do not deploy it on product
     ```    
    <br>
    
-    __*Ensure the output of the command above is similar to the one shown below before proceeding to the next step__
+***Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
     
     ```
     NAME                     READY   STATUS    RESTARTS   AGE
@@ -135,7 +135,7 @@ and is by no means production ready therefore please do not deploy it on product
  
  #### 1. Using external load balancer
  
- **1. Get nginx service external IP address**
+ 1. Get nginx service external IP address
  
    ``` 
    kubectl get svc nginx-service -o wide
@@ -145,7 +145,7 @@ and is by no means production ready therefore please do not deploy it on product
 
    ```
    
-  **2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser. For example, if the worker node's IP address is 10.10.10.202, to access the website I will enter http://10.10.10.202 and the website should look like [this](#image2)**
+  2. Access the website by typing the nginx service **EXTERNAL IP** address inside a web browser. For example, if the worker node's IP address is **10.10.10.202**, to access the website I will enter **http://10.10.10.202** and the website should look like [this](#image2)
    
  #### 2. Using NodePort
  
@@ -159,7 +159,7 @@ and is by no means production ready therefore please do not deploy it on product
 
    ```
 
-  2. Access the website by typing the nginx service __NODE IP:PORT NUMBER address inside a web browser. For example, if the worker node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:32098 and the website should look like [this](#image2)
+  2. Access the website by typing the nginx service **NODE IP:PORT NUMBER** address inside a web browser. For example, if the worker node IP address is **10.1.1.1**, to access the website I will enter **http://10.1.1.1:32098** and the website should look like [this](#image2)
 
  <a name="minikube-portforward"/></a>
  #### 3. Using service and portforwarding (Only for minikube)
@@ -169,7 +169,7 @@ and is by no means production ready therefore please do not deploy it on product
    ``` 
    kubectl port-forward --address 0.0.0.0 svc/nginx-service 80:80
    ```
-  2. Access the website by typing the nginx service __MINIKUBE NODE IP__ address inside a web browser. For example, if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
+  2. Access the website by typing the nginx service **MINIKUBE NODE IP** address inside a web browser. For example, if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
 
 
 <a name="image2"/></a>
@@ -353,7 +353,7 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
   
   <br>
   
-  **6. We can verify this by running the describe command on the pod name and look at the current requested resources of the nginx pods. To get the pod names run "kubectl get pods --selector=app=nginx" **
+**6. We can verify this by running the describe command on the pod name and look at the current requested resources of the nginx pods. To get the pod names run "kubectl get pods --selector=app=nginx"**
   
       ```
       kubectl describe pods nginx-69cc54b656-lpbf9
