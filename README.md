@@ -269,11 +269,11 @@ In short, the HPA creates more pods to spread out the workload among multiple di
     
     ```
 
-At this point, the HPA is functioning. For this example, the metric use for scaling is CPU load although custom metrics can also be used but will require more configuration.
+    At this point, the HPA is functioning. For this example, the metric use for scaling is CPU load although custom metrics can also be used but will require more configuration.
 
-Before moving on to the Vertical Pod Autoscaler example please remove the HPA first as for the example for VPA we are using the CPU load as the metric which is a limitation as HPA and VPA can run concurrently using the same metrics
+    Before moving on to the Vertical Pod Autoscaler example please remove the HPA first as for the example for VPA we are using the CPU load as the metric which is a limitation as HPA and VPA can run concurrently using the same metrics
 
-Run the following command to remove the HPA before proceeding
+    Run the following command to remove the HPA before proceeding
 
     ```
     kubectl delete -f pod_auto_scaler/hpa.yaml
