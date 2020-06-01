@@ -285,11 +285,11 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
     *--- Output omitted for brevity --*
    
         Limits:
-          cpu:     100m
-          memory:  50Mi
+          cpu:     1
+          memory:  128Mi
         Requests:
-          cpu:        10m
-          memory:     10Mi
+          cpu:        5m
+          memory:     64Mi
           
     *--- Output omitted for brevity --*
 
@@ -326,7 +326,7 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
     *--- Output omitted for brevity --*
 
     
-As we can see, the VPA recommends the nginx pod to be configured with 25 milli-cpus and therefore this will result in the VPA recreating the pods to increase the CPU resources from 10m to 25m to meet the recommendation.
+As we can see, the VPA recommends the nginx pod to be configured with 25 milli-cpus and therefore this will result in the VPA recreating the pods to increase the CPU resources from 5m to 25m to meet the recommendation.
   
   <br>
   
