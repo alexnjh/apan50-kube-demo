@@ -161,7 +161,7 @@ and is by no means production ready therefore please do not deploy it on product
 ![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
   
-  **3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information. **
+  **3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information.**
 
 <br>
 <br>
