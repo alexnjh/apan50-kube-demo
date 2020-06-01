@@ -281,10 +281,10 @@ Run the following command to remove the HPA before proceeding
     ```
     
 2. Before deploying the VPA we first need to understand under which cicumstances will the the VPA redeploy the pod with more resources.
-    - When the pod requested resource is below the lowerbound or the CPU load is above the upperbound the VPA will redeploy a new pod with more resources
+    - When the pod requested resource is below the lowerbound or the current CPU load is above the upperbound values in the VPA recommandation
 
     
-3. Now we take a look at the current requested resources used by the nginx pod look for requests and the out put should be similar to the one shown below
+3. Now we take a look at the current requested resources used by the nginx pod look for label __requests__
 
     ```
     kubectl describe pods --selector=app=nginx
@@ -309,3 +309,51 @@ Run the following command to remove the HPA before proceeding
 
     ``` 
     
+5. Let's take a look at the recommandation by the VPA
+
+    ```
+    kubectl describe pods --selector=app=nginx
+    
+    *--- Output omitted for brevity --*
+   
+    Container Recommendations:
+      Container Name:  nginx
+      Lower Bound:
+        Cpu:     25m
+        Memory:  262144k
+      Target:
+        Cpu:     25m
+        Memory:  262144k
+      Uncapped Target:
+        Cpu:     25m
+        Memory:  262144k
+      Upper Bound:
+        Cpu:     25m
+        Memory:  749230002
+          
+    *--- Output omitted for brevity --*
+
+    ``` 
+    
+  As we can see, the VPA recommands the nginx pod to be configured with 25 milli-cpus and therefore this will result in the VPA recreating the pods to increase the CPU resources from 10m to 25m to meet the recommandation.
+  
+  
+  6. We can verify this by running the describe command on the pod name and look at the current requested resources of the nginx pods. To get the pod names run __"kubectl get pods --selector=app=nginx"__
+  
+    ```
+    kubectl describe pods nginx-69cc54b656-lpbf9
+    
+    *--- Output omitted for brevity --*
+   
+        Limits:
+          cpu:     2
+          memory:  1Gi
+        Requests:
+          cpu:      100m
+          memory:   128Mi
+          
+    *--- Output omitted for brevity --*
+
+    ``` 
+
+  
