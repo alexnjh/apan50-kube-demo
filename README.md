@@ -197,3 +197,37 @@ __HPA__ = Horizontal Pod Autoscaler
 In short the HPA creates more pods to spread out the workload among multiple different pods while the VPA increases the amount of computing power of the pod to process more requests. 
  
 ![image2](https://i.ibb.co/Wn2pYv9/image2.jpg")
+
+### Testing out the horizontal autoscaler
+---
+
+1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics
+
+    ```
+    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
+    ```
+    
+2. Ensure the kube-metrics-server is in the __Running__ state
+
+    ```
+    kubectl get pods  -n kube-system | awk '/metrics-server/{print}'
+    ```
+    
+3. We now apply the HPA manifest
+
+    ```
+    kubectl apply -f pod_auto_scaler/hpa.yaml
+    ```
+  
+2. Verify HPA is working. (May need to run the command multiple times)
+
+    ```
+    kubectl get hpa nginx
+    
+    Expected output:
+    
+    NAME    REFERENCE          TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+    nginx   Deployment/nginx   5%/50%    1         5         2          23s
+
+    ```   
+    
