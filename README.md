@@ -198,7 +198,7 @@ In short the HPA creates more pods to spread out the workload among multiple dif
  
 ![image2](https://i.ibb.co/Wn2pYv9/image2.jpg")
 
-### Testing out the horizontal autoscaler
+### Testing out the horizontal pod autoscaler
 ---
 
 1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics
@@ -257,4 +257,55 @@ In short the HPA creates more pods to spread out the workload among multiple dif
     nginx-69cc54b656-jllsj   2/2     Running   0          45s
     nginx-69cc54b656-lpbf9   2/2     Running   0          19h
     nginx-69cc54b656-pt5th   2/2     Running   0          45s
+    
+    ```
 
+At this point the HPA is functioning. For this example the metric use for scaling is CPU load although custom metrics can also be used but will require more configuration.
+
+Before moving on to the Vertical Pod Autoscaler example please remove the HPA first as for the example for VPA we are using the CPU load as the metric which is a limitation as HPA and VPA can run concurrently using the same metrics
+
+Run the following command to remove the HPA before proceeding
+
+    ```
+    kubectl delete -f pod_auto_scaler/hpa.yaml
+    ```
+    
+### Testing out the vertical pod autoscaler
+---
+
+1. Deploy the vertical pod autoscaler controller manifest (Skip to step 2 if VPA controller is deployed)
+
+    ```
+    git clone https://github.com/kubernetes/autoscaler.git
+    ./autoscaler/vertical-pod-autoscaler/hack/vpa-up.sh
+    ```
+    
+2. Before deploying the VPA we first need to understand under which cicumstances will the the VPA redeploy the pod with more resources.
+    - When the pod requested resource is below the lowerbound or the CPU load is above the upperbound the VPA will redeploy a new pod with more resources
+
+    
+3. Now we take a look at the current requested resources used by the nginx pod look for requests and the out put should be similar to the one shown below
+
+    ```
+    kubectl describe pods --selector=app=nginx
+    
+    *--- Output omitted for brevity --*
+   
+        Limits:
+          cpu:     100m
+          memory:  50Mi
+        Requests:
+          cpu:        10m
+          memory:     10Mi
+          
+    *--- Output omitted for brevity --*
+
+    ``` 
+    
+4. Now apply the VPA manifest file
+
+    ```
+    kubectl apply -f pod_auto_scaler/vpa.yaml
+
+    ``` 
+    
