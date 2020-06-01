@@ -28,7 +28,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 <br>
 
-### Verify Kubernetes cluster is running
+### :star: Verify Kubernetes cluster is running
 ---
 
 **1. Run the following to check if the Kubernetes service is running**
@@ -45,7 +45,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 <a name="deploymariadb"/></a>
 
-### Deploy MariaDB container
+### :star: Deploy MariaDB container
 ---
 
 **1. Open up ``` mariadb.yaml ```**
@@ -117,11 +117,12 @@ and is by no means production ready therefore please do not deploy it on product
  <br>
  
  <a name="testoutstack"/></a>
- ### Test out the LEMP stack
+ ### :star: Test out the LEMP stack
  ---
 
  Congratulations now our LEMP stack is deployed on the Kubernetes cluster. Before going further let's test out our new LEMP stack.
- **If your using minikube please refer to [this](#minikube-portforward) if not follow the instructions below according to the service type of your choice**
+ 
+ :exclamation:  **If your using minikube please refer to [this](#minikube-portforward) if not follow the instructions below according to the service type of your choice**
  
  #### 1. Using external load balancer
  
@@ -173,7 +174,7 @@ and is by no means production ready therefore please do not deploy it on product
 <br>
 
 <a name="autoscaler"/></a>
- ### Vertical and Horizontal pod auto scaler
+ ### :star: Vertical and Horizontal pod auto scaler
  ---
 
  Before trying out the auto scaler. Let's take a look at their differences.
@@ -201,7 +202,7 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 
 
 <a name="testouthpa"/></a>
-### Testing out the horizontal pod autoscaler
+### :star: Testing out the horizontal pod autoscaler
 ---
 
 **1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics**
@@ -264,7 +265,7 @@ Non-Minikube : ```kubectl apply -f https://github.com/kubernetes-sigs/metrics-se
 
 At this point, the HPA is functioning. For this example, the metric used for scaling is **CPU load** although custom metrics can also be used but will require more specific configuration which is outside the scope of this tutorial.
 
-Before moving on to the Vertical Pod Autoscaler example please remove the HPA from the cluster.This is to ensure the HPA will not affect the VPA.
+:exclamation:  Before moving on to the Vertical Pod Autoscaler example please remove the HPA from the cluster.This is to ensure the HPA will not affect the VPA.
     
 Run the following command to remove the HPA before proceeding
 
@@ -274,7 +275,7 @@ Run the following command to remove the HPA before proceeding
 <br> 
 
 <a name="testoutvpa"/></a>
-### Testing out the vertical pod autoscaler
+### :star: Testing out the vertical pod autoscaler
 ---
 
 **1. Deploy the vertical pod autoscaler controller manifest (Skip to step 2 if VPA controller is deployed)**
@@ -355,7 +356,7 @@ As we can see, the VPA recommends the nginx pod to be configured with 25 milli-c
 
 <br> 
  
-### Conclusion
+### :star: Conclusion
 --- 
 
 This concludes the demostration regarding the different pod auto scalers and the steps required to deploy a workflow in a Kubernetes cluster. 
