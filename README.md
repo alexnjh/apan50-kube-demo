@@ -77,6 +77,7 @@ and is by no means production ready therefore please do not deploy it on product
 ---
 
 **1. Open up ``` nginx.yaml ```**
+
 **2. Find and replace the __DB_SELECT value with the __MYSQL_DATABASE value and __DB_PASS value with the __MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion**
 
     env:
@@ -150,9 +151,9 @@ and is by no means production ready therefore please do not deploy it on product
   1. Open another terminal and enter the following command to port forward the port to the minikube virtual machine
  
    ``` 
-   kubectl port-forward --address 0.0.0.0 svc/nginx-service 80:80
+   kubectl port-forward --address 0.0.0.0 svc/nginx-service 30000:80
    ```
-  2. Access the website by typing the nginx service **MINIKUBE NODE IP** address inside a web browser. For example, if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
+  2. Access the website by typing the nginx service **MINIKUBE NODE IP** address inside a web browser. For example, if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:30000 and the website should look like [this](#image2)
 
 
 <a name="image2"/></a>
