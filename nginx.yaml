@@ -53,7 +53,7 @@ metadata:
   labels:
     app: nginx-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP # Change this to LoadBalancer if using an external load balancer. No changes required if using minikube
   selector:
     app: nginx
   ports:

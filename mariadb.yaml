@@ -56,6 +56,6 @@ spec:
         - name: mariadb-data
           hostPath:
             path: /data
-            type: Directory
+            type: DirectoryOrCreate
 
 ---
