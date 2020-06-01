@@ -19,7 +19,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 ### Prerequisites
 
-1. Working Kubernetes cluster
+__1. Working Kubernetes cluster
 
 <a name="verifykube"/></a> 
 
@@ -28,7 +28,7 @@ and is by no means production ready therefore please do not deploy it on product
 ### Verify Kubernetes cluster is running
 ---
 
-1. Run the following to check if the Kubernetes service is running
+__1. Run the following to check if the Kubernetes service is running
 
     ```
     kubectl get svc kubernetes
@@ -49,9 +49,9 @@ and is by no means production ready therefore please do not deploy it on product
 ### Deploy MariaDB container
 ---
 
-1. Open up ``` mariadb.yaml ```
-2. Find and replace __MYSQL_ROOT_PASSWORD__ value to a password of your choice
-3. (Optional) Find and replace the __MYSQL_DATABASE__ value with the name of the database that the website will be using later.
+__1. Open up ``` mariadb.yaml ```
+__2. Find and replace __MYSQL_ROOT_PASSWORD__ value to a password of your choice
+__3. (Optional) Find and replace the __MYSQL_DATABASE__ value with the name of the database that the website will be using later.
 
     ```
     env:
@@ -61,14 +61,14 @@ and is by no means production ready therefore please do not deploy it on product
       value: "apan50demo" # Set database name here
     ```
 
-4. Save the file and apply the mariadb manifest
+__4. Save the file and apply the mariadb manifest
 
     ```
     kubectl apply -f mariadb.yaml
     ```
 
  
-5. Check if the MariaDB pod is in the __Running__ state
+__5. Check if the MariaDB pod is in the __Running__ state
 
     ```
     kubectl get pod --selector=app=mariadb
@@ -88,8 +88,8 @@ and is by no means production ready therefore please do not deploy it on product
 ### Deploy nginx-php-fpm container
 ---
 
-1. Open up ``` nginx.yaml ```
-2. Find and replace the __DB_SELECT__ value with the __MYSQL_DATABASE__ value and __DB_PASS__ value with the __MYSQL_ROOT_PASSWORD__ value as used during the mariadb setup portion
+__1. Open up ``` nginx.yaml ```
+__2. Find and replace the __DB_SELECT__ value with the __MYSQL_DATABASE__ value and __DB_PASS__ value with the __MYSQL_ROOT_PASSWORD__ value as used during the mariadb setup portion
 
     ```
     env:
@@ -102,14 +102,14 @@ and is by no means production ready therefore please do not deploy it on product
     - name: DB_SELECT
       value: "apan50demo"
     ```
-3. Save the file and apply the mariadb manifest
+__3. Save the file and apply the mariadb manifest
 
     ```
     kubectl apply -f nginx.yaml
     ```
 
  
-4. Check if the pod is in the __Running__ state
+__4. Check if the pod is in the __Running__ state
 
     ```
     kubectl get pod --selector=app=nginx
@@ -135,7 +135,7 @@ and is by no means production ready therefore please do not deploy it on product
  
  #### 1. Using external load balancer
  
- 1. Get nginx service external IP address 
+ __1. Get nginx service external IP address 
  
    ``` 
    kubectl get svc nginx-service -o wide
@@ -145,11 +145,11 @@ and is by no means production ready therefore please do not deploy it on product
 
    ```
    
-  2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser. For example, if the worker node's IP address is 10.10.10.202, to access the website I will enter http://10.10.10.202 and the website should look like [this](#image2)
+  __2. Access the website by typing the nginx service __EXTERNAL IP__ address inside a web browser. For example, if the worker node's IP address is 10.10.10.202, to access the website I will enter http://10.10.10.202 and the website should look like [this](#image2)
    
  #### 2. Using NodePort
  
- 1. Get nginx service external IP address 
+ __1. Get nginx service external IP address 
  
    ``` 
    kubectl get svc nginx-service -o wide
@@ -159,17 +159,17 @@ and is by no means production ready therefore please do not deploy it on product
 
    ```
 
-  2. Access the website by typing the nginx service __NODE IP:PORT NUMBER__ address inside a web browser. For example, if the worker node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:32098 and the website should look like [this](#image2)
+  __2. Access the website by typing the nginx service __NODE IP:PORT NUMBER address inside a web browser. For example, if the worker node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1:32098 and the website should look like [this](#image2)
 
  <a name="minikube-portforward"/></a>
  #### 3. Using service and portforwarding (Only for minikube)
  
-  1. Open another terminal and enter the following command to port forward the port to the minikube virtual machine
+  __1. Open another terminal and enter the following command to port forward the port to the minikube virtual machine
  
    ``` 
    kubectl port-forward --address 0.0.0.0 svc/nginx-service 80:80
    ```
-  2. Access the website by typing the nginx service __MINIKUBE NODE IP__ address inside a web browser. For example, if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
+  __2. Access the website by typing the nginx service __MINIKUBE NODE IP__ address inside a web browser. For example, if my node IP address is 10.1.1.1, to access the website I will enter http://10.1.1.1 and the website should look like [this](#image2)
 
 
 <a name="image2"/></a>
@@ -177,7 +177,7 @@ and is by no means production ready therefore please do not deploy it on product
 ![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
   
-  3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information. 
+  __3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information. 
 
 <br>
 <br>
@@ -210,25 +210,25 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 ### Testing out the horizontal pod autoscaler
 ---
 
-1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics
+__1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics
 
     ```
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
     ```
     
-2. Ensure the kube-metrics-server is in the __Running__ state
+__2. Ensure the kube-metrics-server is in the __Running__ state
 
     ```
     kubectl get pods  -n kube-system | awk '/metrics-server/{print}'
     ```
     
-3. We now apply the HPA manifest
+__3. We now apply the HPA manifest
 
     ```
     kubectl apply -f pod_auto_scaler/hpa.yaml
     ```
   
-4. Verify HPA is working. (May need to run the command multiple times)
+__4. Verify HPA is working. (May need to run the command multiple times)
 
     ```
     kubectl get hpa nginx
@@ -240,7 +240,7 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 
     ``` 
     
-5. HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial CPU load on the pods and see the HPA in action. 
+__5. HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial CPU load on the pods and see the HPA in action
 
     1. To increase the load open the sample website and click on the benchmark on the top right-hand corner
 
@@ -269,16 +269,20 @@ In short, the HPA creates more pods to spread out the workload among multiple di
     
     ```
 
-    At this point, the HPA is functioning. For this example, the metric use for scaling is CPU load although custom metrics can also be used but will require more configuration.
+<br>
 
-    Before moving on to the Vertical Pod Autoscaler example please remove the HPA first as for the example for VPA we are using the CPU load as the metric which is a limitation as HPA and VPA can run concurrently using the same metrics
+    At this point, the HPA is functioning. For this example, the metric use for scaling is CPU load although custom metrics can also be used but will require more specific configuration which is outside the scope of this tutorial.
 
+    Before moving on to the Vertical Pod Autoscaler example please remove the HPA from the cluster.This is to ensure the HPA will not affect the VPA.
+    
     Run the following command to remove the HPA before proceeding
 
     ```
     kubectl delete -f pod_auto_scaler/hpa.yaml
     ```
-    
+ 
+<br> 
+ 
 ### Testing out the vertical pod autoscaler
 ---
 
