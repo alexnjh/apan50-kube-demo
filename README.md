@@ -196,25 +196,21 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 
 **1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics**
 
-    ```
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
-    ```
+    
     
 **2. Ensure the kube-metrics-server is in the __Running__ state**
 
-    ```
     kubectl get pods  -n kube-system | awk '/metrics-server/{print}'
-    ```
+    
     
 **3. We now apply the HPA manifest**
 
-    ```
     kubectl apply -f pod_auto_scaler/hpa.yaml
-    ```
+    
   
 **4. Verify HPA is working. (May need to run the command multiple times)**
 
-    ```
     kubectl get hpa nginx
     
     Expected output:
@@ -222,19 +218,18 @@ In short, the HPA creates more pods to spread out the workload among multiple di
     NAME    REFERENCE          TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
     nginx   Deployment/nginx   5%/50%    1         5         2          23s
 
-    ``` 
     
 **5. HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial CPU load on the pods and see the HPA in action**
 
-    1. To increase the load open the sample website and click on the benchmark on the top right-hand corner
+  1. To increase the load open the sample website and click on the benchmark on the top right-hand corner
 
-    ![image3](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
+  ![image3](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
+
+  2. Click on submit, this will increase the CPU load to around 100% for 1 minute
+
+  3. After around 40 seconds the HPA will create a few more pods to spread out the load as shown below
     
-    2. Click on submit, this will increase the CPU load to around 100% for 1 minute
     
-    3. After around 40 seconds the HPA will create a few more pods to spread out the load as shown below
-    
-    ```
     Before:
     
     NAME                     READY   STATUS    RESTARTS   AGE
@@ -251,19 +246,17 @@ In short, the HPA creates more pods to spread out the workload among multiple di
     nginx-69cc54b656-lpbf9   2/2     Running   0          19h
     nginx-69cc54b656-pt5th   2/2     Running   0          45s
     
-    ```
 
 <br>
 
-    At this point, the HPA is functioning. For this example, the metric use for scaling is CPU load although custom metrics can also be used but will require more specific configuration which is outside the scope of this tutorial.
+At this point, the HPA is functioning. For this example, the metric use for scaling is CPU load although custom metrics can also be used but will require more specific configuration which is outside the scope of this tutorial.
 
-    Before moving on to the Vertical Pod Autoscaler example please remove the HPA from the cluster.This is to ensure the HPA will not affect the VPA.
+Before moving on to the Vertical Pod Autoscaler example please remove the HPA from the cluster.This is to ensure the HPA will not affect the VPA.
     
-    Run the following command to remove the HPA before proceeding
+Run the following command to remove the HPA before proceeding
 
-    ```
     kubectl delete -f pod_auto_scaler/hpa.yaml
-    ```
+
  
 <br> 
  
@@ -272,10 +265,8 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 
 **1. Deploy the vertical pod autoscaler controller manifest (Skip to step 2 if VPA controller is deployed)**
 
-    ```
     git clone https://github.com/kubernetes/autoscaler.git
     ./autoscaler/vertical-pod-autoscaler/hack/vpa-up.sh
-    ```
     
 **2. Before deploying the VPA we first need to understand under which circumstances will the VPA redeploy the pod with more resources.**
 
@@ -284,7 +275,6 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
     
 **3. Now we take a look at the current requested resources used by the nginx pod look for label requests **
 
-    ```
     kubectl describe pods --selector=app=nginx
     
     *--- Output omitted for brevity --*
@@ -298,18 +288,17 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
           
     *--- Output omitted for brevity --*
 
-    ``` 
     
 **4. Next apply the VPA manifest file**
 
-    ```
+
     kubectl apply -f pod_auto_scaler/vpa.yaml
 
-    ``` 
+
     
 **5. Let's take a look at the recommendation by the VPA**
 
-    ```
+
     kubectl describe pods --selector=app=nginx
     
     *--- Output omitted for brevity --*
@@ -331,15 +320,13 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
           
     *--- Output omitted for brevity --*
 
-    ``` 
     
-    As we can see, the VPA recommends the nginx pod to be configured with 25 milli-cpus and therefore this will result in the VPA recreating the pods to increase the CPU resources from 10m to 25m to meet the recommendation.
+As we can see, the VPA recommends the nginx pod to be configured with 25 milli-cpus and therefore this will result in the VPA recreating the pods to increase the CPU resources from 10m to 25m to meet the recommendation.
   
   <br>
   
 **6. We can verify this by running the describe command on the pod name and look at the current requested resources of the nginx pods. To get the pod names run "kubectl get pods --selector=app=nginx"**
   
-      ```
       kubectl describe pods nginx-69cc54b656-lpbf9
 
       *--- Output omitted for brevity --*
@@ -353,6 +340,5 @@ The VPA will redeploy the pod when the pod requested resource is below the lower
 
       *--- Output omitted for brevity --*
 
-      ``` 
 
   
