@@ -38,8 +38,6 @@ and is by no means production ready therefore please do not deploy it on product
     NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
     kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   52d
 
-
-
 <br>
 
 <a name="deploymariadb"/></a>
@@ -51,39 +49,27 @@ and is by no means production ready therefore please do not deploy it on product
 **2. Find and replace MYSQL_ROOT_PASSWORD value to a password of your choice**
 **3. (Optional) Find and replace the MYSQL_DATABASE value with the name of the database that the website will be using later.**
 
-    ```
     env:
     - name: MYSQL_ROOT_PASSWORD
       value: "password123" # Set root password here
     - name: MYSQL_DATABASE
       value: "apan50demo" # Set database name here
       
-    ```
 
 **4. Save the file and apply the mariadb manifest**
 
-    ```
     kubectl apply -f mariadb.yaml
-    
-    ```
-
  
 **5. Check if the MariaDB pod is in the __Running__ state**
 
-    ```
     kubectl get pod --selector=app=mariadb
-    
-    ```    
+     
 <br>
    
 ***Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
     
-    ```
-    
     NAME        READY   STATUS    RESTARTS   AGE
-    mariadb-0   1/1     Running   0          13s
-    
-    ```       
+    mariadb-0   1/1     Running   0          13s     
  
  <br>
     
@@ -94,7 +80,6 @@ and is by no means production ready therefore please do not deploy it on product
 **1. Open up ``` nginx.yaml ```**
 **2. Find and replace the __DB_SELECT value with the __MYSQL_DATABASE value and __DB_PASS value with the __MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion**
 
-    ```
     env:
     - name: DB_ADDR
       value: "mariadb-0.mariadb-service.default.svc.cluster.local:3306"
@@ -104,29 +89,25 @@ and is by no means production ready therefore please do not deploy it on product
       value: "password123"
     - name: DB_SELECT
       value: "apan50demo"
-    ```
+      
 **3. Save the file and apply the mariadb manifest**
 
-    ```
     kubectl apply -f nginx.yaml
-    ```
 
  
 **4. Check if the pod is in the __Running__ state**
 
-    ```
     kubectl get pod --selector=app=nginx
-    ```    
-   <br>
+ 
+ 
+<br>
    
 ***Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
     
-    ```
     NAME                     READY   STATUS    RESTARTS   AGE
     nginx-69cc54b656-22zsr   1/1     Running   0          19s
     nginx-69cc54b656-7n785   1/1     Running   0          19s
-    ```         
- 
+      
  <br>
  
  <a name="testoutstack"/></a>
