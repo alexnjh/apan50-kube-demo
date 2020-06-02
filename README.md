@@ -47,7 +47,7 @@ and is by no means production ready therefore please do not deploy it on product
 
 <a name="deploymariadb"/></a>
 
-### :star: Deploy MariaDB container
+### :star: Deploy MariaDB pod
 ---
 
 **1. Open up ``` mariadb.yaml ```**
@@ -81,7 +81,7 @@ and is by no means production ready therefore please do not deploy it on product
  <br>
     
 <a name="deploynginx"/></a> 
-### :star: Deploy nginx-php-fpm container
+### :star: Deploy nginx-php-fpm pod
 ---
 
 **1. Open up ``` nginx.yaml ```**
