@@ -78,6 +78,9 @@ and is by no means production ready therefore please do not deploy it on product
     mariadb-0   1/1     Running   0          13s     
  
     
+<br>
+<br>
+    
 <a name="deploynginx"/></a> 
 ### :star: Deploy nginx-php-fpm pod
 ---
