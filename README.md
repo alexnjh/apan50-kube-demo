@@ -73,7 +73,7 @@ and is by no means production ready therefore please do not deploy it on product
      
 <br>
    
-***Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
+**6. Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
     
     NAME        READY   STATUS    RESTARTS   AGE
     mariadb-0   1/1     Running   0          13s     
@@ -85,7 +85,7 @@ and is by no means production ready therefore please do not deploy it on product
 ---
 
 **1. Open up ``` nginx.yaml ```**
-
+<br>
 **2. Find and replace the DB_SELECT value with the MYSQL_DATABASE value and DB_PASS value with the MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion**
 
     env:
@@ -97,11 +97,11 @@ and is by no means production ready therefore please do not deploy it on product
       value: "password123"
     - name: DB_SELECT
       value: "apan50demo"
-      
+<br>      
 **3. Save the file and apply the mariadb manifest**
 
     kubectl apply -f nginx.yaml
-
+<br>
  
 **4. Check if the pod is in the __Running__ state**
 
@@ -126,6 +126,8 @@ and is by no means production ready therefore please do not deploy it on product
  
  :exclamation:  **If your using minikube please refer to [this](#minikube-portforward) if not follow the instructions below according to the service type of your choice**
  
+ <br>
+ 
  #### 1. Using external load balancer
  
  1. Get nginx service external IP address
@@ -138,8 +140,12 @@ and is by no means production ready therefore please do not deploy it on product
 
    ```
    
+<br>
+
   2. Access the website by typing the nginx service **EXTERNAL IP** address inside a web browser. For example, if the worker node's IP address is **10.10.10.202**, to access the website I will enter **http://10.10.10.202** and the website should look like [this](#image2)
-   
+
+<br>
+
  #### 2. Using NodePort
  
  1. Get nginx service external IP address 
@@ -153,6 +159,8 @@ and is by no means production ready therefore please do not deploy it on product
    ```
 
   2. Access the website by typing the nginx service **NODE IP:PORT NUMBER** address inside a web browser. For example, if the worker node IP address is **10.1.1.1**, to access the website I will enter **http://10.1.1.1:32098** and the website should look like [this](#image2)
+
+<br>
 
  <a name="minikube-portforward"/></a>
  #### 3. Using service and portforwarding (Only for minikube)
@@ -169,7 +177,9 @@ and is by no means production ready therefore please do not deploy it on product
 
 ![image1](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
   
-  
+ 
+ <br>
+ 
   **3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information.**
 
 <br>
