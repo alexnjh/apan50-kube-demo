@@ -15,7 +15,7 @@ and is by no means production ready therefore please do not deploy it on product
   - [Deploy mariadb pod](#deploymariadb)
   - [Deploy nginx-php-fpm pod](#deploynginx)
   - [Test out the LEMP stack](#testoutstack)
-  - [Vertical and Horizontal pod auto scaler](#autoscaler)
+  - [Vertical and Horizontal podautoscaler](#autoscaler)
   - [Testing out the horizontal pod autoscaler](#testouthpa)
   - [Testing out the vertical pod autoscaler](#testoutvpa) 
   - [Conclusion](#conclusion) 
@@ -363,7 +363,9 @@ As we can see, the VPA recommends the nginx pod to be configured with 25 milli-c
       *--- Output omitted for brevity --*
 
 <br> 
+
 <a name="conclusion"/></a>
+
 ### :star: Conclusion
 --- 
 
