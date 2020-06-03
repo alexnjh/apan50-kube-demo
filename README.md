@@ -71,21 +71,19 @@ and is by no means production ready therefore please do not deploy it on product
 
     kubectl get pod --selector=app=mariadb
      
-<br>
    
 **6. Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
     
     NAME        READY   STATUS    RESTARTS   AGE
     mariadb-0   1/1     Running   0          13s     
  
- <br>
     
 <a name="deploynginx"/></a> 
 ### :star: Deploy nginx-php-fpm pod
 ---
 
 **1. Open up ``` nginx.yaml ```**
-<br>
+
 **2. Find and replace the DB_SELECT value with the MYSQL_DATABASE value and DB_PASS value with the MYSQL_ROOT_PASSWORD value as used during the mariadb setup portion**
 
     env:
@@ -97,26 +95,25 @@ and is by no means production ready therefore please do not deploy it on product
       value: "password123"
     - name: DB_SELECT
       value: "apan50demo"
-<br>      
+    
 **3. Save the file and apply the mariadb manifest**
 
     kubectl apply -f nginx.yaml
-<br>
- 
+
 **4. Check if the pod is in the __Running__ state**
 
     kubectl get pod --selector=app=nginx
  
- 
-<br>
    
-***Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
+**5. Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
     
     NAME                     READY   STATUS    RESTARTS   AGE
     nginx-69cc54b656-22zsr   1/1     Running   0          19s
     nginx-69cc54b656-7n785   1/1     Running   0          19s
-      
- <br>
+ 
+ 
+<br>
+ 
  
  <a name="testoutstack"/></a>
  ### :star: Test out the LEMP stack
@@ -126,7 +123,7 @@ and is by no means production ready therefore please do not deploy it on product
  
  :exclamation:  **If your using minikube please refer to [this](#minikube-portforward) if not follow the instructions below according to the service type of your choice**
  
- <br>
+<br>
  
  #### 1. Using external load balancer
  
@@ -365,9 +362,8 @@ As we can see, the VPA recommends the nginx pod to be configured with 25 milli-c
 
       *--- Output omitted for brevity --*
 
-
 <br> 
- 
+<a name="conclusion"/></a>
 ### :star: Conclusion
 --- 
 
