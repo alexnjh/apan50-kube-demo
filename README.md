@@ -217,7 +217,7 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 **1. We start by deploying the kube-metrics-server which is required by the autoscaler to get pod metrics**
  <br>
 Minikube : ```minikube addons enable metrics-server``` <br>
-Non-Minikube : ```kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml```
+Non-Minikube : ```kubectl apply -f components.yaml```
     
     
 **2. Ensure the kube-metrics-server is in the __Running__ state**
@@ -242,7 +242,7 @@ Non-Minikube : ```kubectl apply -f https://github.com/kubernetes-sigs/metrics-se
     
 **5. HPA will automatically scale the pods when the current pods experience heavy load let's generate some artificial CPU load on the pods and see the HPA in action**
 
-  * To increase the load open the sample website and click on the benchmark on the top right-hand corner
+  * To increase the load open the sample website and click on **benchmark** on the top right-hand corner
 
   ![image3](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image3.jpg "Book information webpage")
 
