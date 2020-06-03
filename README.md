@@ -15,7 +15,7 @@ and is by no means production ready therefore please do not deploy it on product
   - [Deploy mariadb pod](#deploymariadb)
   - [Deploy nginx-php-fpm pod](#deploynginx)
   - [Test out the LEMP stack](#testoutstack)
-  - [Vertical and Horizontal podautoscaler](#autoscaler)
+  - [Vertical and Horizontal pod autoscaler](#autoscaler)
   - [Testing out the horizontal pod autoscaler](#testouthpa)
   - [Testing out the vertical pod autoscaler](#testoutvpa) 
   - [Conclusion](#conclusion) 
