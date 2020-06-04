@@ -258,17 +258,17 @@ Non-Minikube : ```kubectl apply -f components.yaml```
 
       NAME                     READY   STATUS    RESTARTS   AGE
       mariadb-0                1/1     Running   0          19h
-      nginx-69cc54b656-lpbf9   2/2     Running   0          19h
+      nginx-69cc54b656-lpbf9   1/1     Running   0          19h
 
       After:
 
       NAME                     READY   STATUS    RESTARTS   AGE
       mariadb-0                1/1     Running   0          19h
-      nginx-69cc54b656-758bz   2/2     Running   0          44s
-      nginx-69cc54b656-c2v7q   2/2     Running   0          45s
-      nginx-69cc54b656-jllsj   2/2     Running   0          45s
-      nginx-69cc54b656-lpbf9   2/2     Running   0          19h
-      nginx-69cc54b656-pt5th   2/2     Running   0          45s
+      nginx-69cc54b656-758bz   1/1     Running   0          44s
+      nginx-69cc54b656-c2v7q   1/1     Running   0          45s
+      nginx-69cc54b656-jllsj   1/1     Running   0          45s
+      nginx-69cc54b656-lpbf9   1/1     Running   0          19h
+      nginx-69cc54b656-pt5th   1/1     Running   0          45s
       ```
     
 
