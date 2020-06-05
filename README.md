@@ -302,9 +302,8 @@ Run the following command to remove the HPA before proceeding
 **2. Before deploying the VPA we first need to understand under which circumstances will the VPA redeploy the pod with more resources.**
 
 The VPA will redeploy the pod when the pod requested resource is below the lower bound or the current CPU load is above the upper bound values in the VPA recommendation
-
-    
-**3. Now we take a look at the current requested resources used by the nginx pod look for label requests **
+   
+**3. Now we take a look at the current requested resources used by the nginx pod look for label requests**
 
     kubectl describe pods --selector=app=nginx
     
