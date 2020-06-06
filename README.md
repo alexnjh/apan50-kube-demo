@@ -354,7 +354,7 @@ As we can see, the VPA recommends the nginx pod to be configured with 25 milli-c
   
 **6. We can verify this by running the describe command on the pod name and look at the current requested resources of the nginx pods. To get the pod names run "kubectl get pods --selector=app=nginx"**
   
-      kubectl describe pods nginx-69cc54b656-lpbf9
+      kubectl describe pods --selector=app=nginx
 
       *--- Output omitted for brevity --*
 
