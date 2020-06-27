@@ -261,7 +261,7 @@ Daemon sets deploy pods in each node and ensures that each node only have one in
      
   5. Access the site similar to the nginx deployment and the metrics for the nodes show be shown
 
-![image4](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
+![image4](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image4.jpg "Monitoring webpage")
     
 <br>
 <br>
