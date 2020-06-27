@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-server
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: python-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: python-server
+    spec:
+      containers:
+      - name: python-server
+        image: alexnjh/apan50-python-server:0.0.1
+        ports:
+        - name: web
+          containerPort: 5000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "5m" #(0.25 of cpu)
+          limits:
+            memory: "128Mi"
+            cpu: "5m" #(0.25 of cpu)
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: python-service
+  labels:
+    app: python-service
+spec:
+  type: LoadBalancer # Change this to LoadBalancer if using an external load balancer. No changes required if using minikube
+  selector:
+    app: python-server
+  ports:
+  - name: web
+    port: 5000

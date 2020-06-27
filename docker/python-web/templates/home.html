@@ -1,0 +1,17 @@
+<h1>Node Monitoring</h1>
+    <table style="width:100%">
+     <tr>
+       <th>Hostname</th>
+       <th>CPU utilization (%)</th>
+       <th>Memory utilization (%)</th>
+        <th>Last updated</th>
+     </tr>
+     {% for result in hostlist %}
+      <tr>
+        <td style="text-align: center;font-size: 50px;">{{ result["hostname"] }}</td>
+        <td style="text-align: center;font-size: 50px;">{{ result["cpu_value"] }} %</td>
+        <td style="text-align: center;font-size: 50px;">{{ result["mem_value"] }} %</td>
+        <td style="text-align: center;font-size: 50px;">{{ result["last_updated"] }}</td>
+      </tr>
+    {% endfor %}
+   </table>
