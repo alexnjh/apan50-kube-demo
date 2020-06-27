@@ -27,8 +27,9 @@ spec:
             memory: "128Mi"
             cpu: "5m" #(0.25 of cpu)
       # tolerations:
-      # - key: "blue"
-      #   operator: "Exists"
+      # - key: "key"
+      #   operator: "Equal"
+      #   value: "blue"
       #   effect: "NoSchedule"
 
 ---
