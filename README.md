@@ -197,40 +197,40 @@ This example will showcase the benefits of daemon sets and taints and toleration
 
   1. Firstly lets taint the minikube node with the label blue
 
-     kubectl taint nodes minikube key=blue:NoSchedule
+          kubectl taint nodes minikube key=blue:NoSchedule
 
   2. Now lets depoy the python-server pod
 
-     kubectl apply -f apan50-kube-demo/daemonset_example/python-server.yaml
+          kubectl apply -f apan50-kube-demo/daemonset_example/python-server.yaml
 
   3. Now lets take a look at the pod status
 
-     kubectl describe pod --selector=app=python-server
+          kubectl describe pod --selector=app=python-server
       
 
   4. As the pod defination of the python-server yaml file does not tolerate the taint blue the node fails to schedule
 
-    Events:
-    Type     Reason            Age                  From               Message
-    ----     ------            ----                 ----               -------
-    Warning  FailedScheduling  55s (x3 over 2m25s)  default-scheduler  0/1 nodes are available: 1 node(s) had taint {key: blue}, that the pod didn't tolerate.
+          Events:
+          Type     Reason            Age                  From               Message
+          ----     ------            ----                 ----               -------
+          Warning  FailedScheduling  55s (x3 over 2m25s)  default-scheduler  0/1 nodes are available: 1 node(s) had taint {key: blue}, that the pod didn't tolerate.
  
 5. To overcome this lets add a toleration to the yaml file by uncommenting the toleration portion as shown below
 
-    # UNCOMMENT THIS
-    #tolerations:
-    #- key: "key"
-    #  operator: "Equal"
-    #  value: "blue"
-    #  effect: "NoSchedule"
+          # UNCOMMENT THIS
+          #tolerations:
+          #- key: "key"
+          #  operator: "Equal"
+          #  value: "blue"
+          #  effect: "NoSchedule"
      
    
 6. Apply the configuration file(Step 2) and the python-server should be deployed
     
-    kubectl get pod --selector=app=python-server
+          kubectl get pod --selector=app=python-server
     
-    NAME                             READY   STATUS    RESTARTS   AGE
-    python-server-65586b466b-nnlnr   1/1     Running   0          87s
+          NAME                             READY   STATUS    RESTARTS   AGE
+          python-server-65586b466b-nnlnr   1/1     Running   0          87s
     
     
 **Taints and tolerations** is useful to prevent certain pods from scheduling or executing on a specific node and in a monitoring scenario could be used to prevent monitoring pods from deploying on nodes that should not be monitered.
@@ -242,22 +242,22 @@ Daemon sets deploy pods in each node and ensures that each node only have one in
 
   1. First let's remove the taint from the node so that monitoring pods can be deployed to monitor the node
     
-     kubectl taint nodes minikube key:NoSchedule-
+          kubectl taint nodes minikube key:NoSchedule-
      
   2. Next let's deploy the monitoring pods.
     
-     kubectl apply -f apan50-kube-demo/daemonset_example/python-client.yaml
+          kubectl apply -f apan50-kube-demo/daemonset_example/python-client.yaml
      
   3. Ensure that all the monitoring pods are deployed on every node in the cluster.
 
-     kubectl get pod --selector=app=python-server -o wide
+          kubectl get pod --selector=app=python-server -o wide
      
-     NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
-     python-server-65586b466b-nnlnr   1/1     Running   0          24m   172.18.0.4   minikube   <none>           <none>
+          NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+          python-server-65586b466b-nnlnr   1/1     Running   0          24m   172.18.0.4   minikube   <none>           <none>
      
   4. Follow [this](#minikube-portforward) and port forward external traffic using port 5000 not 80
 
-     kubectl port-forward --address 0.0.0.0 svc/python-service 30000:5000
+          kubectl port-forward --address 0.0.0.0 svc/python-service 30000:5000
      
   5. Access the site similar to the nginx deployment and the metrics for the nodes show be shown
 
