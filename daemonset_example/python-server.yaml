@@ -26,6 +26,10 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "5m" #(0.25 of cpu)
+      # tolerations:
+      # - key: "blue"
+      #   operator: "Exists"
+      #   effect: "NoSchedule"
 
 ---
 
