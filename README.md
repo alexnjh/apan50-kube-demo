@@ -293,7 +293,6 @@ In short, the HPA creates more pods to spread out the workload among multiple di
 
 <br>
 
-
 <a name="testouthpa"/></a>
 ### :star: Testing out the horizontal pod autoscaler
 ---
