@@ -14,8 +14,8 @@ and is by no means production ready therefore please do not deploy it on product
   - [Verify kubernetes cluster is running](#verifykube)
   - [Deploy mariadb pod (Statefulsets, enviroment variables and persistent volumes)](#deploymariadb)
   - [Deploy nginx-php-fpm pod (Deployment, Replica set, Pod and Services](#deploynginx)
-  - [Deploy a simple python node monitoring application (Daemon set, Taints and tolerations)](#deploypython)
   - [Test out the LEMP stack](#testoutstack)
+  - [Deploy a simple python node monitoring application (Daemon set, Taints and tolerations)](#deploypython)
   - [Vertical and Horizontal pod autoscaler](#autoscaler)
   - [Testing out the horizontal pod autoscaler](#testouthpa)
   - [Testing out the vertical pod autoscaler](#testoutvpa) 
@@ -183,6 +183,48 @@ and is by no means production ready therefore please do not deploy it on product
  
   **3. Enter information regarding a book and submit the form and if configured correctly the front-page should be updated with the new book's information.**
 
+<br>
+
+<a name="deploypython"/></a>
+
+### :star: Deploy a simple python node monitoring application
+---
+
+This example will showcase the benefits of daemon sets and taints and tolerations and how it applies to a possible scenario like node monitoring.
+
+
+**1. Firstly lets taint the minikube node with the label blue
+
+     kubectl taint nodes minikube key=blue:NoSchedule
+
+**2. Now lets depoy the python-server pod
+
+     kubectl apply -f apan50-kube-demo/daemonset_example/python-server.yaml
+
+**3. (Optional) Find and replace the MYSQL_DATABASE value with the name of the database that the website will be using later.**
+
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "password123" # Set root password here
+    - name: MYSQL_DATABASE
+      value: "apan50demo" # Set database name here
+      
+
+**4. Save the file and apply the mariadb manifest**
+
+    kubectl apply -f mariadb.yaml
+ 
+**5. Check if the MariaDB pod is in the __Running__ state**
+
+    kubectl get pod --selector=app=mariadb
+     
+   
+**6. Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
+    
+    NAME        READY   STATUS    RESTARTS   AGE
+    mariadb-0   1/1     Running   0          13s     
+ 
+    
 <br>
 <br>
 
