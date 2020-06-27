@@ -193,37 +193,75 @@ and is by no means production ready therefore please do not deploy it on product
 This example will showcase the benefits of daemon sets and taints and tolerations and how it applies to a possible scenario like node monitoring.
 
 
-**1. Firstly lets taint the minikube node with the label blue
+#### 2. Using taints and tolerations  
+
+**1. Firstly lets taint the minikube node with the label blue**
 
      kubectl taint nodes minikube key=blue:NoSchedule
 
-**2. Now lets depoy the python-server pod
+**2. Now lets depoy the python-server pod**
 
      kubectl apply -f apan50-kube-demo/daemonset_example/python-server.yaml
 
-**3. (Optional) Find and replace the MYSQL_DATABASE value with the name of the database that the website will be using later.**
+**3. Now lets take a look at the pod status**
 
-    env:
-    - name: MYSQL_ROOT_PASSWORD
-      value: "password123" # Set root password here
-    - name: MYSQL_DATABASE
-      value: "apan50demo" # Set database name here
+     kubectl describe pod --selector=app=python-server
       
 
-**4. Save the file and apply the mariadb manifest**
+**4. As the pod defination of the python-server yaml file does not tolerate the taint blue the node fails to schedule**
 
-    kubectl apply -f mariadb.yaml
+    Events:
+    Type     Reason            Age                  From               Message
+    ----     ------            ----                 ----               -------
+    Warning  FailedScheduling  55s (x3 over 2m25s)  default-scheduler  0/1 nodes are available: 1 node(s) had taint {key: blue}, that the pod didn't tolerate.
  
-**5. Check if the MariaDB pod is in the __Running__ state**
+**5. To overcome this lets add a toleration to the yaml file by uncommenting the toleration portion as shown below**
 
-    kubectl get pod --selector=app=mariadb
+    # UNCOMMENT THIS
+    #tolerations:
+    #- key: "key"
+    #  operator: "Equal"
+    #  value: "blue"
+    #  effect: "NoSchedule"
      
    
-**6. Ensure the output of the command above is similar to the one shown below before proceeding to the next step**
+**6. Apply the configuration file(Step 2) and the python-server should be deployed**
     
-    NAME        READY   STATUS    RESTARTS   AGE
-    mariadb-0   1/1     Running   0          13s     
- 
+    kubectl get pod --selector=app=python-server
+    
+    NAME                             READY   STATUS    RESTARTS   AGE
+    python-server-65586b466b-nnlnr   1/1     Running   0          87s
+    
+    
+**Taints and tolerations** is useful to prevent certain pods from scheduling or executing on a specific node and in a monitoring scenario could be used to prevent monitoring pods from deploying on nodes that should not be monitered.
+    
+
+#### 2. Using Daemon sets 
+
+Daemon sets deploy pods in each node and ensures that each node only have one instance of a specific pod. This feature is particularly useful when an application needs to be deployed on each node in the cluster like monitoring.
+
+**1. First let's remove the taint from the node so that monitoring pods can be deployed to monitor the node**
+    
+     kubectl taint nodes minikube key:NoSchedule-
+     
+**2. Next let's deploy the monitoring pods.**
+    
+     kubectl apply -f apan50-kube-demo/daemonset_example/python-client.yaml
+     
+**3. Ensure that all the monitoring pods are deployed on every node in the cluster.**
+
+     kubectl get pod --selector=app=python-server -o wide
+     
+     NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+     python-server-65586b466b-nnlnr   1/1     Running   0          24m   172.18.0.4   minikube   <none>           <none>
+     
+**3. Follow [this](#minikube-portforward) and port forward external traffic using port 5000 not 80**
+
+     kubectl port-forward --address 0.0.0.0 svc/python-service 30000:5000
+     
+**4. Access the site similar to the nginx deployment and the metrics for the nodes show be shown*
+
+![image4](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image1.jpg "Book information webpage")
     
 <br>
 <br>
