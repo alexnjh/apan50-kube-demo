@@ -17,7 +17,6 @@ and is by no means production ready therefore please do not deploy it on product
   - [Deploy a simple python node monitoring application (Daemon set, Taints and tolerations)](#deploypython)
   - [Test out the LEMP stack](#testoutstack)
   - [Vertical and Horizontal pod autoscaler](#autoscaler)
-  - [Vertical and Horizontal pod autoscaler](#autoscaler)
   - [Testing out the horizontal pod autoscaler](#testouthpa)
   - [Testing out the vertical pod autoscaler](#testoutvpa) 
   - [Conclusion](#conclusion) 
