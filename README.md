@@ -259,7 +259,7 @@ Daemon sets deploy pods in each node and ensures that each node only have one in
 
           kubectl port-forward --address 0.0.0.0 svc/python-service 30000:5000
      
-  5. Access the site similar to the nginx deployment and the metrics for the nodes show be shown
+  5. Access the site similar to the nginx deployment and the metrics for the nodes should be similar to the example shown below
 
 ![image4](https://github.com/alexnjh/apan50-kube-demo/blob/master/images/image4.jpg "Monitoring webpage")
     
