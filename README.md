@@ -13,7 +13,7 @@ and is by no means production ready therefore please do not deploy it on product
   - [Prerequisites](#prerequisites)
   - [Verify kubernetes cluster is running](#verifykube)
   - [Deploy mariadb pod (Statefulsets, enviroment variables and persistent volumes)](#deploymariadb)
-  - [Deploy nginx-php-fpm pod (Deployment, Replica set, Pod and Services](#deploynginx)
+  - [Deploy nginx-php-fpm pod (Deployment, Replica set, Pod and Services)](#deploynginx)
   - [Test out the LEMP stack](#testoutstack)
   - [Deploy a simple python node monitoring application (Daemon set, Taints and tolerations)](#deploypython)
   - [Vertical and Horizontal pod autoscaler](#autoscaler)
