@@ -201,7 +201,7 @@ This example will showcase the benefits of daemon sets and taints and toleration
 
   2. Now lets depoy the python-server pod
 
-          kubectl apply -f apan50-kube-demo/daemonset_example/python-server.yaml
+          kubectl apply -f daemonset_example/python-server.yaml
 
   3. Now lets take a look at the pod status
 
@@ -246,7 +246,7 @@ Daemon sets deploy pods in each node and ensures that each node only have one in
      
   2. Next let's deploy the monitoring pods.
     
-          kubectl apply -f apan50-kube-demo/daemonset_example/python-client.yaml
+          kubectl apply -f daemonset_example/python-client.yaml
      
   3. Ensure that all the monitoring pods are deployed on every node in the cluster.
 
